@@ -1,0 +1,47 @@
+@use "styles/colors";
+@use "styles/elements";
+
+.field {
+	display: block;
+
+	input,
+	select {
+		width: 100%;
+		height: elements.$form-element-height;
+		padding: 0 20px;
+		border: 1px solid transparent;
+		border-radius: elements.$form-element-border-radius;
+		font: inherit;
+		color: inherit;
+		outline: none;
+		transition: .2s;
+	}
+
+	&--light {
+		input,
+		select {
+			border-color: colors.$basic-color;
+
+			&:hover, &:focus {
+				border-color: colors.$accent-color;
+			}
+		}
+	}
+
+	&--dark {
+		input,
+		select {
+			border-color: #7a7a7a;
+			background-color: #0b0b0b;
+
+			&:hover, &:focus {
+				border-color: #fff;
+			}
+		}
+	}
+
+	&__label {
+		display: block;
+	}
+
+}

@@ -1,0 +1,18 @@
+.space {
+	&--horizontal {
+		display: flex;
+		column-gap: 20px;
+	}
+
+	&--vertical {
+		display: flex;
+		flex-direction: column;
+		row-gap: 20px;
+	}
+
+	&--max {
+		& > * {
+			flex-grow: 1;
+		}
+	}
+}

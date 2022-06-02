@@ -1,0 +1,20 @@
+@use "styles/colors";
+@use "styles/elements";
+
+.button {
+	height: elements.$form-element-height;
+	padding: 0 20px;
+	background-color: colors.$accent-color;
+	color: colors.$top-accent-color;
+	border-radius: elements.$form-element-border-radius;
+	font-weight: 500;
+	text-transform: uppercase;
+	outline: none;
+	border: none;
+	transition: .2s;
+	cursor: pointer;
+
+	&:hover {
+		background-color: colors.$effect-accent-color;
+	}
+}
