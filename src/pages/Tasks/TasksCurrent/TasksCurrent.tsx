@@ -1,6 +1,8 @@
 import React from 'react';
 import Table from "components/Table/Table";
 import Box from "components/Box/Box";
+import Button from "../../../components/Button/Button";
+import Space from "../../../components/Space/Space";
 
 function TasksCurrent() {
 	const columns = [
@@ -56,7 +58,12 @@ function TasksCurrent() {
 						<td>{element.name}</td>
 						<td>{element.category}</td>
 						<td>{element.deadline}</td>
-						<td><a href="#">Delete</a></td>
+						<td>
+                            <Space direction="horizontal">
+                                <Button size="small" styleType="secondary">Perform</Button>
+                                <Button size="small" styleType="secondary">Delete</Button>
+                            </Space>
+                        </td>
 					</tr>
 				)}
 			</Table>

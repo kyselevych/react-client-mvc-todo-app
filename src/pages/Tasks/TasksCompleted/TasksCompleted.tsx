@@ -1,8 +1,13 @@
 import React from 'react';
 import Table from "components/Table/Table";
 import Box from "components/Box/Box";
+import Button from "components/Button/Button";
+import {useTypedSelector} from "hooks/useTypedSelector";
+import Space from "components/Space/Space";
 
 function TasksCurrent() {
+    const tasks = useTypedSelector(state => state.tasks.tasks);
+
 	const columns = [
 		{
 			name: "Name",
@@ -26,37 +31,21 @@ function TasksCurrent() {
 		}
 	];
 	
-	const data = [
-		{
-			id: '1',
-			name: 'Create React App',
-			category: "Yes",
-			deadline: "25.30.05 15:30"
-		},
-		{
-			id: '2',
-			name: 'Create React App',
-			category: null,
-			deadline: "25.30.05 15:30"
-		},
-		{
-			id: '3',
-			name: 'Create React App',
-			category: null,
-			dateExecution: "25.30.05 15:30"
-		},
-	];
-	
 	return (
 		<Box>
 			<h2>Completed tasks</h2>
 			<Table columns={columns}>
-				{data.map(element =>
+				{tasks?.map(element =>
 					<tr key={element.id}>
 						<td>{element.name}</td>
 						<td>{element.category}</td>
 						<td>{element.dateExecution}</td>
-						<td><a href="#t">Delete</a></td>
+                        <td>
+                            <Space direction="horizontal">
+                                <Button size="small" styleType="secondary">Perform</Button>
+                                <Button size="small" styleType="secondary">Delete</Button>
+                            </Space>
+                        </td>
 					</tr>
 				)}
 			</Table>

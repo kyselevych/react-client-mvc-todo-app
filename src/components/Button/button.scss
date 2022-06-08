@@ -8,7 +8,6 @@
 	color: colors.$top-accent-color;
 	border-radius: elements.$form-element-border-radius;
 	font-weight: 500;
-	text-transform: uppercase;
 	outline: none;
 	border: none;
 	transition: .2s;
@@ -16,5 +15,21 @@
 
 	&:hover {
 		background-color: colors.$effect-accent-color;
+	}
+
+	&--small {
+		height: 26px;
+		font-size: 12px;
+		padding: 0 10px;
+	}
+
+	&--secondary {
+		background-color: transparent;
+		border: 1px solid colors.$effect-accent-color;
+		color: colors.$effect-accent-color;
+
+		&:hover {
+			color: white;
+		}
 	}
 }
