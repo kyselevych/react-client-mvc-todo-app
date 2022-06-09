@@ -2,11 +2,7 @@ import React from "react";
 import {Formik, Form} from 'formik';
 import * as Yup from "yup";
 
-import Box from "components/Box/Box";
-import Space from "components/Space/Space";
-import Field from "components/Field/Field";
-import Button from "components/Button/Button";
-import ErrorSpan from "components/ErrorSpan/ErrorSpan";
+import {Box, Space, Field, Button, ErrorSpan} from "components";
 
 interface Category {
     name: string

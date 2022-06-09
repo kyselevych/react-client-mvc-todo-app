@@ -1,9 +1,7 @@
 import React from 'react';
 import {Routes, Route} from "react-router-dom";
-import Tasks from "pages/Tasks/Tasks";
-import MainLayout from "pages/MainLayout/MainLayout";
-import Categories from "pages/Categories/Categories";
-import EditCategory from "pages/EditCategory/EditCategory";
+
+import {Tasks, MainLayout, Categories, EditCategory} from 'pages';
 
 function AppRouter() {
 	return (

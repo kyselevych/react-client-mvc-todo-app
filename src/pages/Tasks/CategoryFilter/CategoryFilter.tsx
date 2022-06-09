@@ -1,8 +1,6 @@
 import React from 'react';
 
-import Field from "components/Field/Field";
-import Button from "components/Button/Button";
-import Space from "components/Space/Space";
+import {Space, Field, Button} from "components";
 
 import './categoryFilter.scss';
 

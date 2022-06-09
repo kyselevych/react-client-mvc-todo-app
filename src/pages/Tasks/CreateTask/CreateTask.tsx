@@ -3,15 +3,11 @@ import {Formik, Form} from 'formik';
 import * as Yup from "yup";
 
 import {useDispatch} from "react-redux";
+import {useTypedSelector} from "hooks/useTypedSelector";
 import {createTask} from "store/actions/taskActions";
 import {CreateTaskInput} from "types/taskTypes";
 
-import Box from "components/Box/Box";
-import Space from "components/Space/Space";
-import Field from "components/Field/Field";
-import Button from "components/Button/Button";
-import ErrorSpan from "components/ErrorSpan/ErrorSpan";
-import {useTypedSelector} from "hooks/useTypedSelector";
+import {Box, Space, Field, Button, ErrorSpan} from "components";
 
 const CreateTaskSchema = Yup.object().shape({
     name: Yup.string()

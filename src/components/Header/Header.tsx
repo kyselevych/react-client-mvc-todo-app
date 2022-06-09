@@ -1,9 +1,10 @@
 import React from "react";
 import {Link} from "react-router-dom";
 
-import './header.scss';
-import Space from "components/Space/Space";
+import {Space} from "components";
 import StorageSelect from "./StorageSelect/StorageSelect";
+
+import './header.scss';
 
 function Header() {
 	return (

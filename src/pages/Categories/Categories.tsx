@@ -1,5 +1,7 @@
 import React from 'react';
-import Space from "components/Space/Space";
+
+import {Space} from "components";
+
 import CategoriesList from "./CategoriesList/CategoriesList";
 import CreateCategory from "./CreateCategory/CreateCategory";
 

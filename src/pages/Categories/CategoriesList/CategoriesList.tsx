@@ -1,7 +1,6 @@
 import React from 'react';
-import Table from "components/Table/Table";
-import Box from "components/Box/Box";
-import Space from "components/Space/Space";
+
+import {Table, Box, Space} from "components";
 
 function CategoriesList() {
 	const columns = [

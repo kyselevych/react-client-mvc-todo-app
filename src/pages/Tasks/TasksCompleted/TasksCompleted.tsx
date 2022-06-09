@@ -1,12 +1,11 @@
 import React from 'react';
-import Table from "components/Table/Table";
-import Box from "components/Box/Box";
-import Button from "components/Button/Button";
-import {useTypedSelector} from "hooks/useTypedSelector";
-import Space from "components/Space/Space";
-import {deleteTask} from "store/actions/taskActions";
-import {useDispatch} from "react-redux";
 import moment from "moment";
+
+import {useDispatch} from "react-redux";
+import {useTypedSelector} from "hooks/useTypedSelector";
+import {deleteTask} from "store/actions/taskActions";
+
+import {Table, Box, Button, Space} from "components";
 import {sortDateCompare} from "helpers/sortDateCompare";
 
 function TasksCurrent() {
