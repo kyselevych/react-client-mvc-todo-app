@@ -12,7 +12,14 @@ type ButtonProps = {
 }
 
 function Button(props: ButtonProps) {
-    const {children, style = {}, type = "button", size = "default", styleType = "primary"} = props;
+    const {
+        children,
+        style = {},
+        type = "button",
+        size = "default",
+        styleType = "primary",
+        onClick
+    } = props;
 
     let sizeClass: string;
     let styleTypeClass: string;
@@ -40,6 +47,7 @@ function Button(props: ButtonProps) {
             type={type}
             className={`button ${sizeClass} ${styleTypeClass}`}
             style={style}
+            onClick={onClick}
 
         >
             {children}

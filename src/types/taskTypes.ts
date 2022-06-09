@@ -1,3 +1,5 @@
+import {Category} from "./categoryTypes";
+
 export interface TaskState {
     tasks: Task[],
     nextCreateTaskId: number
@@ -7,7 +9,8 @@ export interface TaskState {
 
 export enum TaskActionTypes {
     CREATE_TASK = "CREATE_TASK",
-    DELETE_TASK = "DELETE_TASK"
+    DELETE_TASK = "DELETE_TASK",
+    PERFORM_TASK = "PERFORM_TASK",
 }
 
 export interface CreateTaskAction {
@@ -17,7 +20,12 @@ export interface CreateTaskAction {
 
 export interface DeleteTaskAction {
     type: TaskActionTypes.DELETE_TASK,
-    payload: DeleteTaskInput
+    payload: number
+}
+
+export interface PerformTaskAction {
+    type: TaskActionTypes.PERFORM_TASK,
+    payload: number
 }
 
 // Types
@@ -35,11 +43,12 @@ export type Task = {
 export type CreateTaskInput = {
     name: string,
     deadline: string,
-    categoryId: number
+    categoryId: number,
+    category: Category | null
 }
 
-export type DeleteTaskInput = {
-    id: number
-}
 
-export type TaskAction = CreateTaskAction;
+export type TaskAction =
+    CreateTaskAction
+    | DeleteTaskAction
+    | PerformTaskAction;

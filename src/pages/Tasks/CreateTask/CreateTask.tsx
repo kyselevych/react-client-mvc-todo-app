@@ -11,7 +11,7 @@ import Space from "components/Space/Space";
 import Field from "components/Field/Field";
 import Button from "components/Button/Button";
 import ErrorSpan from "components/ErrorSpan/ErrorSpan";
-import {useTypedSelector} from "../../../hooks/useTypedSelector";
+import {useTypedSelector} from "hooks/useTypedSelector";
 
 const CreateTaskSchema = Yup.object().shape({
     name: Yup.string()
@@ -28,16 +28,22 @@ interface FormValues {
 
 function CreateTask() {
     const dispatch = useDispatch();
-    const categories = useTypedSelector(state => state.categories.categories)
+    const categories = useTypedSelector(state => state.categories.categories);
 
-    function onSubmit(values: FormValues) {
+    function onSubmit(values: FormValues, resetForm: { resetForm: () => void; }) {
+        const parsedCategoryId = parseInt(values.categoryId);
+
         const createTaskInput: CreateTaskInput = {
             name: values.name,
             deadline: values.deadline,
-            categoryId: parseInt(values.categoryId)
+            categoryId: parsedCategoryId,
+            category: isNaN(parsedCategoryId)
+                ? null
+                : categories.find(category => category.id === parsedCategoryId)!
         }
 
         dispatch(createTask(createTaskInput));
+        resetForm.resetForm();
     }
 
     return (
@@ -70,7 +76,9 @@ function CreateTask() {
                                     value={props.values.categoryId}
                                 >
                                     <option value="">None</option>
-                                    {categories?.map(category => <option value={category.id}>{category.name}</option>)}
+                                    {categories?.map(category =>
+                                        <option value={category.id} key={category.id}>{category.name}</option>
+                                    )}
                                 </select>
                                 <ErrorSpan>{props.errors.categoryId}</ErrorSpan>
                             </Field>
