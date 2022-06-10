@@ -8,12 +8,15 @@ import {deleteTask, performTask} from "store/actions/taskActions";
 import {Table, Box, Button, Space} from "components";
 
 import {sortDateCompare} from "helpers/sortDateCompare";
+import {getFilteredTasks} from "helpers/getFilteredTasks";
 
 function TasksCurrent() {
     const dispatch = useDispatch();
+    const filterCategoryId = useTypedSelector(state => state.filteredTasks.categoryId);
     const currentTasks =
         useTypedSelector(state => state.tasks.tasks.filter(task => !task.completed))
             .sort(sortDateCompare("deadline"));
+    const filteredCompletedTasks = getFilteredTasks(currentTasks, filterCategoryId);
 
     const columns = [
         {
@@ -42,7 +45,7 @@ function TasksCurrent() {
         <Box>
             <h2>Current tasks</h2>
             <Table columns={columns}>
-                {currentTasks.map(task =>
+                {filteredCompletedTasks?.map(task =>
                     <tr key={task.id}>
                         <td>{task.name}</td>
                         <td>{task.category?.name}</td>

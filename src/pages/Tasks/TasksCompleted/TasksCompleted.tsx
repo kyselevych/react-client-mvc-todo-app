@@ -6,13 +6,17 @@ import {useTypedSelector} from "hooks/useTypedSelector";
 import {deleteTask} from "store/actions/taskActions";
 
 import {Table, Box, Button, Space} from "components";
+
 import {sortDateCompare} from "helpers/sortDateCompare";
+import {getFilteredTasks} from "helpers/getFilteredTasks";
 
 function TasksCurrent() {
     const dispatch = useDispatch();
+    const filterCategoryId = useTypedSelector(state => state.filteredTasks.categoryId)
     const completedTasks =
         useTypedSelector(state => state.tasks.tasks.filter(task => task.completed))
-            .sort(sortDateCompare("dateExecution"));
+            .sort(sortDateCompare("dateExecution",true));
+    const filteredCompletedTasks = getFilteredTasks(completedTasks, filterCategoryId);
 
     const columns = [
         {
@@ -41,7 +45,7 @@ function TasksCurrent() {
         <Box>
             <h2>Completed tasks</h2>
             <Table columns={columns}>
-                {completedTasks?.map(task =>
+                {filteredCompletedTasks?.map(task =>
                     <tr key={task.id}>
                         <td>{task.name}</td>
                         <td>{task.category?.name}</td>
