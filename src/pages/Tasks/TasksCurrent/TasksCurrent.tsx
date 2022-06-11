@@ -12,6 +12,7 @@ import {getFilteredTasks} from "helpers/getFilteredTasks";
 
 function TasksCurrent() {
     const dispatch = useDispatch();
+    const categories = useTypedSelector(state => state.categories.categories);
     const filterCategoryId = useTypedSelector(state => state.filteredTasks.categoryId);
     const currentTasks =
         useTypedSelector(state => state.tasks.tasks.filter(task => !task.completed))
@@ -48,7 +49,7 @@ function TasksCurrent() {
                 {filteredCompletedTasks?.map(task =>
                     <tr key={task.id}>
                         <td>{task.name}</td>
-                        <td>{task.category?.name}</td>
+                        <td>{!isNaN(task.categoryId as number) ? categories.find(category => category.id === task.categoryId)?.name : null}</td>
                         <td>{task.deadline ? moment(task.deadline).format("DD.MM.YYYY HH:mm") : null}</td>
                         <td>
                             <Space direction="horizontal">

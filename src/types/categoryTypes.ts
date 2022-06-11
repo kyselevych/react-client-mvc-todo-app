@@ -18,7 +18,12 @@ export interface CreateCategoryAction {
 
 export interface DeleteCategoryAction {
     type: CategoryActionTypes.DELETE_CATEGORY,
-    payload: DeleteCategoryInput
+    payload: number
+}
+
+export interface EditCategoryAction {
+    type: CategoryActionTypes.EDIT_CATEGORY,
+    payload: EditCategoryInput
 }
 
 
@@ -33,10 +38,12 @@ export type CreateCategoryInput = {
     name: string
 }
 
-export type DeleteCategoryInput = {
+export type EditCategoryInput = {
     id: number
+    name: string
 }
 
 export type CategoryAction =
     CreateCategoryAction
-    | DeleteCategoryAction;
+    | DeleteCategoryAction
+    | EditCategoryAction;

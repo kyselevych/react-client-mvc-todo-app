@@ -1,4 +1,4 @@
-import {CategoryState, CategoryAction, CategoryActionTypes} from "types/categoryTypes";
+import {CategoryAction, CategoryActionTypes, CategoryState} from "types/categoryTypes";
 
 const initialState: CategoryState = {
     categories: [
@@ -25,6 +25,22 @@ export const categoryReducer = (state = initialState, action: CategoryAction): C
                     ...action.payload,
                 }]
             };
+        case CategoryActionTypes.DELETE_CATEGORY:
+            return {
+                ...state,
+                categories: [...state.categories.filter(category => category.id !== action.payload)]
+            }
+        case CategoryActionTypes.EDIT_CATEGORY:
+            return {
+                ...state,
+                categories: state.categories.map(category => {
+                    if (category.id === action.payload.id) {
+                        return {...category, name: action.payload.name}
+                    }
+
+                    return category;
+                })
+            }
         default:
             return state;
     }

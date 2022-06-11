@@ -1,3 +1,4 @@
+import React from "react";
 import {BrowserRouter} from "react-router-dom";
 import {AppRouter} from "components";
 
@@ -6,9 +7,11 @@ import './styles/app.scss';
 
 function App() {
 	return (
-		<BrowserRouter>
-			<AppRouter/>
-		</BrowserRouter>
+        <React.StrictMode>
+            <BrowserRouter>
+                <AppRouter/>
+            </BrowserRouter>
+        </React.StrictMode>
 	);
 }
 

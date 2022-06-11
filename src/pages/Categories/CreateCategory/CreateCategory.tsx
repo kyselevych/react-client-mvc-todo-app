@@ -1,12 +1,12 @@
 import React from "react";
 import {Formik, Form} from 'formik';
+import {useDispatch} from "react-redux";
 import * as Yup from "yup";
 
 import {Box, Space, Field, Button, ErrorSpan} from "components";
+import {CreateCategoryInput} from "types/categoryTypes";
+import {createCategory} from "../../../store/actions/categoryActions";
 
-interface Category {
-    name: string
-}
 
 const CreateCategorySchema = Yup.object().shape({
     name: Yup.string()
@@ -14,14 +14,17 @@ const CreateCategorySchema = Yup.object().shape({
 });
 
 function CreateCategory() {
-    function onSubmit(values: Category) {
-        console.log(values)
+    const dispatch = useDispatch();
+
+    const onSubmit = (values: CreateCategoryInput, resetForm: { resetForm: () => void; }): void => {
+        dispatch(createCategory(values));
+        resetForm.resetForm();
     }
 
     return (
         <Box>
             <h2>Create category</h2>
-            <Formik<Category>
+            <Formik<CreateCategoryInput>
                 initialValues={{
                     name: ''
                 }}

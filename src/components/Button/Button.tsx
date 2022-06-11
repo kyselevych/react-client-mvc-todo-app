@@ -8,7 +8,8 @@ type ButtonProps = {
     type?: "button" | "submit" | "reset",
     size?: "default" | "small",
     styleType?: "primary" | "secondary",
-    onClick?: () => void
+    onClick?: () => void,
+    form?: string
 }
 
 function Button(props: ButtonProps) {
@@ -18,7 +19,8 @@ function Button(props: ButtonProps) {
         type = "button",
         size = "default",
         styleType = "primary",
-        onClick
+        onClick,
+        form
     } = props;
 
     let sizeClass: string;
@@ -48,7 +50,7 @@ function Button(props: ButtonProps) {
             className={`button ${sizeClass} ${styleTypeClass}`}
             style={style}
             onClick={onClick}
-
+            form={form}
         >
             {children}
         </button>

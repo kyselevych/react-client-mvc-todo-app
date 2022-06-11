@@ -1,7 +1,7 @@
 import React from 'react';
 import {Routes, Route} from "react-router-dom";
 
-import {Tasks, MainLayout, Categories, EditCategory} from 'pages';
+import {Tasks, MainLayout, Categories} from 'pages';
 
 function AppRouter() {
 	return (
@@ -10,7 +10,6 @@ function AppRouter() {
 				<Route index element={<Tasks/>}/>
 				<Route path="tasks" element={<Tasks/>}/>
 				<Route path="categories" element={<Categories/>} />
-				<Route path="categories/edit" element={<EditCategory/>}/>
 			</Route>
 		</Routes>
 	);
