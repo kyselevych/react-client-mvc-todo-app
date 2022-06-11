@@ -1,9 +1,8 @@
 import React from 'react';
 import moment from "moment";
 
-import {useDispatch} from "react-redux";
 import {useTypedSelector} from "hooks/useTypedSelector";
-import {deleteTask, performTask} from "store/actions/taskActions";
+import {useActions} from "hooks/useActions";
 
 import {Table, Box, Button, Space} from "components";
 
@@ -11,7 +10,7 @@ import {sortDateCompare} from "helpers/sortDateCompare";
 import {getFilteredTasks} from "helpers/getFilteredTasks";
 
 function TasksCurrent() {
-    const dispatch = useDispatch();
+    const {performTask, deleteTask} = useActions();
     const categories = useTypedSelector(state => state.categories.categories);
     const filterCategoryId = useTypedSelector(state => state.filteredTasks.categoryId);
     const currentTasks =
@@ -56,12 +55,12 @@ function TasksCurrent() {
                                 <Button
                                     size="small"
                                     styleType="secondary"
-                                    onClick={() => dispatch(performTask(task.id))}
+                                    onClick={() => performTask(task.id)}
                                 >Perform</Button>
                                 <Button
                                     size="small"
                                     styleType="secondary"
-                                    onClick={() => dispatch(deleteTask(task.id))}
+                                    onClick={() => deleteTask(task.id)}
                                 >Delete</Button>
                             </Space>
                         </td>

@@ -8,5 +8,3 @@ export const rootReducer = combineReducers({
     categories: categoryReducer,
     filteredTasks: filterTasksReducer
 });
-
-export type RootState = ReturnType<typeof rootReducer>;

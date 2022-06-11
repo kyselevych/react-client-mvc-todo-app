@@ -5,9 +5,9 @@ import {useFormik} from "formik";
 import {Table, Box, Space, Button, Field, ErrorSpan} from "components";
 
 import {useTypedSelector} from "hooks/useTypedSelector";
-import {useDispatch} from "react-redux";
-import {deleteCategory, editCategory} from "store/actions/categoryActions";
-import {EditCategoryInput} from "types/categoryTypes";
+
+import {EditCategoryInput} from "models/categoryModels";
+import {useActions} from "../../../hooks/useActions";
 
 interface EditModeState {
     status: boolean,
@@ -30,7 +30,7 @@ const EditTaskSchema = yup.object().shape({
 });
 
 function CategoriesList() {
-    const dispatch = useDispatch()
+    const {deleteCategory, editCategory} = useActions();
     const categories = useTypedSelector(state => state.categories.categories);
 
     const [editMode, setEditMode] = useState<EditModeState>({status: false, rowId: null});
@@ -41,7 +41,7 @@ function CategoriesList() {
             name: values.name
         }
 
-        dispatch(editCategory(editCategoryInput));
+        editCategory(editCategoryInput);
         setEditMode({status: false, rowId: null});
     }
 
@@ -128,7 +128,7 @@ function CategoriesList() {
                                         <Button
                                             size="small"
                                             styleType="secondary"
-                                            onClick={() => dispatch(deleteCategory(category.id))}
+                                            onClick={() => deleteCategory(category.id)}
                                         >Delete</Button>
                                     </>
                                 }

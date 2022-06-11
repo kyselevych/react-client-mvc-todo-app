@@ -1,4 +1,4 @@
-import {FilterTasksAction, FilterTasksActionTypes, FilterTasksState} from "types/filterTasksTypes";
+import {FilterTasksAction, FilterTasksActionTypes, FilterTasksState} from "store/types/filterTasksTypes";
 
 const initialState: FilterTasksState = {
     categoryId: null

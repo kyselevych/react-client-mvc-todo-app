@@ -1,17 +1,16 @@
 import React from 'react';
 import moment from "moment";
 
-import {useDispatch} from "react-redux";
-import {useTypedSelector} from "hooks/useTypedSelector";
-import {deleteTask} from "store/actions/taskActions";
-
 import {Table, Box, Button, Space} from "components";
+
+import {useTypedSelector} from "hooks/useTypedSelector";
+import {useActions} from "hooks/useActions";
 
 import {sortDateCompare} from "helpers/sortDateCompare";
 import {getFilteredTasks} from "helpers/getFilteredTasks";
 
 function TasksCurrent() {
-    const dispatch = useDispatch();
+    const {deleteTask} = useActions();
     const categories = useTypedSelector(state => state.categories.categories);
     const filterCategoryId = useTypedSelector(state => state.filteredTasks.categoryId)
     const completedTasks =
@@ -49,14 +48,14 @@ function TasksCurrent() {
                 {filteredCompletedTasks?.map(task =>
                     <tr key={task.id}>
                         <td>{task.name}</td>
-                        <td>{task.categoryId ? categories.find(category => category.id === task.categoryId)?.name : null}</td>
+                        <td>{!isNaN(task.categoryId as number) ? categories.find(category => category.id === task.categoryId)?.name : null}</td>
                         <td>{task.dateExecution ? moment(task.dateExecution).format("DD.MM.YYYY HH:mm") : null}</td>
                         <td>
                             <Space direction="horizontal">
                                 <Button
                                     size="small"
                                     styleType="secondary"
-                                    onClick={() => dispatch(deleteTask(task.id))}
+                                    onClick={() => deleteTask(task.id)}
                                 >Delete</Button>
                             </Space>
                         </td>

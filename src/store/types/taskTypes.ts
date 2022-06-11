@@ -1,11 +1,9 @@
-import {Category} from "./categoryTypes";
+import {Task, CreateTaskInput} from "models/taskModels";
 
 export interface TaskState {
     tasks: Task[],
     nextCreateTaskId: number
 }
-
-// Actions
 
 export enum TaskActionTypes {
     CREATE_TASK = "CREATE_TASK",
@@ -27,26 +25,6 @@ export interface PerformTaskAction {
     type: TaskActionTypes.PERFORM_TASK,
     payload: number
 }
-
-// Types
-
-export type Task = {
-    id: number,
-    name: string,
-    completed: boolean
-    deadline: string | null,
-    dateExecution: string | null,
-    categoryId: number | null,
-    category: any
-}
-
-export type CreateTaskInput = {
-    name: string,
-    deadline: string,
-    categoryId: number,
-    category: Category | null
-}
-
 
 export type TaskAction =
     CreateTaskAction

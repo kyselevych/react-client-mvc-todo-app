@@ -1,13 +1,12 @@
 import React from "react";
-import {Formik, Form} from 'formik';
 import * as Yup from "yup";
-
-import {useDispatch} from "react-redux";
-import {useTypedSelector} from "hooks/useTypedSelector";
-import {createTask} from "store/actions/taskActions";
-import {CreateTaskInput} from "types/taskTypes";
-
+import {Formik, Form} from 'formik';
 import {Box, Space, Field, Button, ErrorSpan} from "components";
+
+import {useTypedSelector} from "hooks/useTypedSelector";
+import {useActions} from "hooks/useActions";
+
+import {CreateTaskInput} from "models/taskModels";
 
 const CreateTaskSchema = Yup.object().shape({
     name: Yup.string()
@@ -23,7 +22,7 @@ interface FormValues {
 }
 
 function CreateTask() {
-    const dispatch = useDispatch();
+    const {createTask} = useActions();
     const categories = useTypedSelector(state => state.categories.categories);
 
     function onSubmit(values: FormValues, resetForm: { resetForm: () => void; }) {
@@ -38,7 +37,7 @@ function CreateTask() {
                 : categories.find(category => category.id === parsedCategoryId)!
         }
 
-        dispatch(createTask(createTaskInput));
+        createTask(createTaskInput);
         resetForm.resetForm();
     }
 
