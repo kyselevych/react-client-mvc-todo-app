@@ -18,7 +18,13 @@ export const taskReducer = (state = initialState, action: TaskAction): TaskState
             return {...state, tasks: [], status: TaskStatus.FAILURE, error: action.payload};
 
         case TaskActionTypes.CREATE_TASK:
-            return {...state, tasks: [...state.tasks, {...action.payload}]};
+            return {...state, status: TaskStatus.LOADING, error: null};
+
+        case TaskActionTypes.CREATE_TASK_SUCCESS:
+            return {...state, tasks: [...state.tasks, action.payload], status: TaskStatus.SUCCESS, error: null};
+
+        case TaskActionTypes.CREATE_TASK_ERROR:
+            return {...state, status: TaskStatus.FAILURE, error: action.payload};
 
         case TaskActionTypes.DELETE_TASK:
             return {...state, tasks: state.tasks.filter(task => task.id !== action.payload)};

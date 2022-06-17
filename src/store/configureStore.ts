@@ -22,3 +22,11 @@ export const configureStore = () => {
 
     return store;
 }
+
+
+
+/* {type: ..., payload} => State
+                        => Epic
+
+
+ */

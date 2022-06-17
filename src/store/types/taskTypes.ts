@@ -11,6 +11,8 @@ export enum TaskActionTypes {
     FETCH_TASKS_SUCCESS = "FETCH_TASKS_SUCCESS",
     FETCH_TASKS_ERROR = "FETCH_TASKS_ERROR",
     CREATE_TASK = "CREATE_TASK",
+    CREATE_TASK_SUCCESS = "CREATE_TASK_SUCCESS",
+    CREATE_TASK_ERROR = "CREATE_TASK_ERROR",
     DELETE_TASK = "DELETE_TASK",
     PERFORM_TASK = "PERFORM_TASK",
 }
@@ -22,9 +24,21 @@ export enum TaskStatus {
     FAILURE = "failure"
 }
 
+// Payload Types
+
 export type FetchTasksPayload = {
     categoryId?: number | null
 }
+
+export type CreateTaskPayload = {
+    taskCreate: {
+        name: string,
+        deadline?: string,
+        categoryId?: number
+    }
+}
+
+// Action Types
 
 export type FetchTasksAction = {
     type: TaskActionTypes.FETCH_TASKS,
@@ -43,7 +57,17 @@ export type FetchTasksErrorAction = {
 
 export type CreateTaskAction = {
     type: TaskActionTypes.CREATE_TASK,
+    payload: CreateTaskPayload
+}
+
+export type CreateTaskSuccessAction = {
+    type: TaskActionTypes.CREATE_TASK_SUCCESS,
     payload: Task
+}
+
+export type CreateTaskErrorAction = {
+    type: TaskActionTypes.CREATE_TASK_ERROR,
+    payload: string
 }
 
 export type DeleteTaskAction = {
@@ -57,9 +81,14 @@ export type PerformTaskAction = {
 }
 
 export type TaskAction =
-    CreateTaskAction
-    | DeleteTaskAction
-    | PerformTaskAction
     | FetchTasksAction
     | FetchTasksSuccessAction
-    | FetchTasksErrorAction;
+    | FetchTasksErrorAction
+
+    | CreateTaskAction
+    | CreateTaskSuccessAction
+    | CreateTaskErrorAction
+
+    | DeleteTaskAction
+    | PerformTaskAction
+    ;

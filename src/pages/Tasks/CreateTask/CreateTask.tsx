@@ -1,12 +1,12 @@
 import React from "react";
 import * as Yup from "yup";
-import {Formik, Form} from 'formik';
-import {Box, Space, Field, Button, ErrorSpan} from "components";
+import {Form, Formik} from 'formik';
+import {Box, Button, ErrorSpan, Field, Space} from "components";
 
 import {useTypedSelector} from "hooks/useTypedSelector";
 import {useActions} from "hooks/useActions";
 
-import {CreateTaskInput} from "models/taskModels";
+import {CreateTaskPayload, TaskStatus} from "store/types/taskTypes";
 
 const CreateTaskSchema = Yup.object().shape({
     name: Yup.string()
@@ -24,21 +24,27 @@ interface FormValues {
 function CreateTask() {
     const {createTask} = useActions();
     const categories = useTypedSelector(state => state.categories.categories);
+    const createTaskStatus = useTypedSelector(state => state.tasks.status);
+    const createTaskError = useTypedSelector(state => state.tasks.error);
 
     function onSubmit(values: FormValues, resetForm: { resetForm: () => void; }) {
         const parsedCategoryId = parseInt(values.categoryId);
 
-        const createTaskInput: CreateTaskInput = {
-            name: values.name,
-            deadline: values.deadline,
-            categoryId: parsedCategoryId,
-            category: isNaN(parsedCategoryId)
-                ? null
-                : categories.find(category => category.id === parsedCategoryId)!
+        const createTaskPayload: CreateTaskPayload = {
+            "taskCreate": {
+                name: values.name,
+                deadline: values.deadline ? values.deadline + ':00' : undefined,
+                categoryId: parsedCategoryId
+            }
         }
 
-        //createTask(createTaskInput);
-        resetForm.resetForm();
+        createTask(createTaskPayload);
+
+        if (createTaskStatus === TaskStatus.FAILURE) {
+
+        } else if (createTaskStatus === TaskStatus.SUCCESS) {
+            resetForm.resetForm();
+        }
     }
 
     return (

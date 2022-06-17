@@ -1,11 +1,11 @@
 import {graphqlRequest} from "api";
-import {FetchTasksPayload} from "store/types/taskTypes";
+import {CreateTaskPayload} from "store/types/taskTypes";
 
-export const queryTasksAll = async (variables?: FetchTasksPayload) => {
+export const mutationTaskCreate = async (variables: CreateTaskPayload) => {
     const query = `
-        query tasksAll($categoryId: Int) {
+        mutation taskCreate($taskCreate: TaskCreateInputType!) {
             tasks {
-                all(categoryId: $categoryId) {
+                createTask(taskCreateInputType: $taskCreate) {
                     id,
                     name,
                     isDone,

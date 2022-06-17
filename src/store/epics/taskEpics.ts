@@ -1,9 +1,14 @@
 import {catchError, map, mergeMap, Observable, of, from} from "rxjs";
 import {ofType} from "redux-observable";
-import {FetchTasksPayload, TaskActionTypes} from "../types/taskTypes";
+
+import {RootAction} from "../types";
+import {CreateTaskPayload, FetchTasksPayload, TaskActionTypes} from "../types/taskTypes";
+import {Task} from "models/taskModels";
+
 import {taskActionCreators} from 'store/actions/taskActions';
 import {queryTasksAll} from "api/tasks/queryTasksAll";
-import {RootAction} from "../types";
+import {mutationTaskCreate} from "api/tasks/mutationTaskCreate";
+
 
 export const fetchTasksEpic = (action$: Observable<RootAction>): Observable<RootAction> => {
     return action$.pipe(
@@ -15,4 +20,16 @@ export const fetchTasksEpic = (action$: Observable<RootAction>): Observable<Root
             )
         )
     )
-}
+};
+
+export const createTaskEpic = (action$: Observable<RootAction>): Observable<RootAction> => {
+    return action$.pipe(
+        ofType(TaskActionTypes.CREATE_TASK),
+        mergeMap(action =>
+            from(mutationTaskCreate(action.payload as CreateTaskPayload)).pipe(
+                map(json => taskActionCreators.createTaskSuccess(json.data.tasks.createTask as Task)),
+                catchError(err => of(taskActionCreators.createTaskFailure(err)))
+            )
+        )
+    )
+};
