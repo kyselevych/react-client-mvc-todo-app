@@ -3,20 +3,15 @@ import moment from "moment";
 
 import {useTypedSelector} from "hooks/useTypedSelector";
 import {useActions} from "hooks/useActions";
+import {sortDateCompare} from "helpers/sortDateCompare";
 
 import {Table, Box, Button, Space} from "components";
-
-import {sortDateCompare} from "helpers/sortDateCompare";
-import {getFilteredTasks} from "helpers/getFilteredTasks";
 
 function TasksCurrent() {
     const {performTask, deleteTask} = useActions();
     const categories = useTypedSelector(state => state.categories.categories);
-    const filterCategoryId = useTypedSelector(state => state.filteredTasks.categoryId);
-    const currentTasks =
-        useTypedSelector(state => state.tasks.tasks.filter(task => !task.completed))
-            .sort(sortDateCompare("deadline"));
-    const filteredCompletedTasks = getFilteredTasks(currentTasks, filterCategoryId);
+    const currentTasks = useTypedSelector(state => state.tasks.tasks.filter(task => !task.isDone))
+        .sort(sortDateCompare("deadline"));
 
     const columns = [
         {
@@ -45,7 +40,7 @@ function TasksCurrent() {
         <Box>
             <h2>Current tasks</h2>
             <Table columns={columns}>
-                {filteredCompletedTasks?.map(task =>
+                {currentTasks?.map(task =>
                     <tr key={task.id}>
                         <td>{task.name}</td>
                         <td>{!isNaN(task.categoryId as number) ? categories.find(category => category.id === task.categoryId)?.name : null}</td>

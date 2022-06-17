@@ -3,7 +3,7 @@ import {Category} from "models/categoryModels";
 export interface Task {
     id: number,
     name: string,
-    completed: boolean
+    isDone: boolean
     deadline: string | null,
     dateExecution: string | null,
     categoryId: number | null,

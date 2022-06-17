@@ -1,8 +1,26 @@
-import {CreateTaskAction, TaskActionTypes, DeleteTaskAction, PerformTaskAction} from "store/types/taskTypes";
-import {CreateTaskInput} from "models/taskModels";
+import {
+    CreateTaskAction,
+    TaskActionTypes,
+    DeleteTaskAction,
+    PerformTaskAction,
+    FetchTasksAction,
+    FetchTasksSuccessAction,
+    FetchTasksErrorAction,
+    FetchTasksPayload
+} from "store/types/taskTypes";
+import {Task} from "models/taskModels";
 
 export const taskActionCreators = {
-    createTask: (payload: CreateTaskInput): CreateTaskAction => {
+    fetchTasks: (payload: FetchTasksPayload): FetchTasksAction => {
+        return {type: TaskActionTypes.FETCH_TASKS, payload: payload}
+    },
+    fetchTasksSuccess: (payload: Task[]): FetchTasksSuccessAction => {
+        return {type: TaskActionTypes.FETCH_TASKS_SUCCESS, payload}
+    },
+    fetchTasksFailure: (payload: string): FetchTasksErrorAction => {
+        return {type: TaskActionTypes.FETCH_TASKS_ERROR, payload}
+    },
+    createTask: (payload: Task): CreateTaskAction => {
         return {type: TaskActionTypes.CREATE_TASK, payload}
     },
     deleteTask: (payload: number): DeleteTaskAction => {

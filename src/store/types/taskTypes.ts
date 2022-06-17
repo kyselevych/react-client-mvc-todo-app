@@ -1,27 +1,57 @@
-import {Task, CreateTaskInput} from "models/taskModels";
+import {Task} from "models/taskModels";
 
-export interface TaskState {
+export type TaskState = {
     tasks: Task[],
-    nextCreateTaskId: number
+    status: TaskStatus,
+    error: string | null
 }
 
 export enum TaskActionTypes {
+    FETCH_TASKS = "FETCH_TASKS",
+    FETCH_TASKS_SUCCESS = "FETCH_TASKS_SUCCESS",
+    FETCH_TASKS_ERROR = "FETCH_TASKS_ERROR",
     CREATE_TASK = "CREATE_TASK",
     DELETE_TASK = "DELETE_TASK",
     PERFORM_TASK = "PERFORM_TASK",
 }
 
-export interface CreateTaskAction {
-    type: TaskActionTypes.CREATE_TASK,
-    payload: CreateTaskInput
+export enum TaskStatus {
+    DEFAULT = "default",
+    LOADING = "loading",
+    SUCCESS = "success",
+    FAILURE = "failure"
 }
 
-export interface DeleteTaskAction {
+export type FetchTasksPayload = {
+    categoryId?: number | null
+}
+
+export type FetchTasksAction = {
+    type: TaskActionTypes.FETCH_TASKS,
+    payload: FetchTasksPayload
+}
+
+export type FetchTasksSuccessAction = {
+    type: TaskActionTypes.FETCH_TASKS_SUCCESS,
+    payload: Task[]
+}
+
+export type FetchTasksErrorAction = {
+    type: TaskActionTypes.FETCH_TASKS_ERROR,
+    payload: string
+}
+
+export type CreateTaskAction = {
+    type: TaskActionTypes.CREATE_TASK,
+    payload: Task
+}
+
+export type DeleteTaskAction = {
     type: TaskActionTypes.DELETE_TASK,
     payload: number
 }
 
-export interface PerformTaskAction {
+export type PerformTaskAction = {
     type: TaskActionTypes.PERFORM_TASK,
     payload: number
 }
@@ -29,4 +59,7 @@ export interface PerformTaskAction {
 export type TaskAction =
     CreateTaskAction
     | DeleteTaskAction
-    | PerformTaskAction;
+    | PerformTaskAction
+    | FetchTasksAction
+    | FetchTasksSuccessAction
+    | FetchTasksErrorAction;

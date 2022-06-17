@@ -7,7 +7,7 @@ import {Table, Box, Space, Button, Field, ErrorSpan} from "components";
 import {useTypedSelector} from "hooks/useTypedSelector";
 
 import {EditCategoryInput} from "models/categoryModels";
-import {useActions} from "../../../hooks/useActions";
+import {useActions} from "hooks/useActions";
 
 interface EditModeState {
     status: boolean,

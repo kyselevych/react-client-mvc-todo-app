@@ -1,6 +1,6 @@
 import type {Category, CreateCategoryInput, EditCategoryInput} from "models/categoryModels";
 
-export interface CategoryState {
+export type CategoryState = {
     categories: Category[],
     nextCreateCategoryId: number
 }
@@ -11,17 +11,17 @@ export enum CategoryActionTypes {
     EDIT_CATEGORY = "EDIT_CATEGORY",
 }
 
-export interface CreateCategoryAction {
+export type CreateCategoryAction = {
     type: CategoryActionTypes.CREATE_CATEGORY,
     payload: CreateCategoryInput
 }
 
-export interface DeleteCategoryAction {
+export type DeleteCategoryAction = {
     type: CategoryActionTypes.DELETE_CATEGORY,
     payload: number
 }
 
-export interface EditCategoryAction {
+export type EditCategoryAction = {
     type: CategoryActionTypes.EDIT_CATEGORY,
     payload: EditCategoryInput
 }

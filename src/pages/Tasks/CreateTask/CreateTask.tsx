@@ -37,7 +37,7 @@ function CreateTask() {
                 : categories.find(category => category.id === parsedCategoryId)!
         }
 
-        createTask(createTaskInput);
+        //createTask(createTaskInput);
         resetForm.resetForm();
     }
 
