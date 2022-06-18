@@ -25,6 +25,8 @@ export enum TaskActionTypes {
     DELETE_TASK_SUCCESS = "DELETE_TASK_SUCCESS",
     DELETE_TASK_ERROR = "DELETE_TASK_ERROR",
     PERFORM_TASK = "PERFORM_TASK",
+    PERFORM_TASK_SUCCESS = "PERFORM_TASK_SUCCESS",
+    PERFORM_TASK_ERROR = "PERFORM_TASK_ERROR",
 }
 
 // Payload Types
@@ -95,6 +97,16 @@ export type PerformTaskAction = {
     payload: number
 }
 
+export type PerformTaskSuccessAction = {
+    type: TaskActionTypes.PERFORM_TASK_SUCCESS,
+    payload: Task
+}
+
+export type PerformTaskErrorAction = {
+    type: TaskActionTypes.PERFORM_TASK_ERROR,
+    payload: string
+}
+
 export type TaskAction =
     | FetchTasksAction
     | FetchTasksSuccessAction
@@ -109,4 +121,6 @@ export type TaskAction =
     | DeleteTaskErrorAction
 
     | PerformTaskAction
+    | PerformTaskSuccessAction
+    | PerformTaskErrorAction
     ;

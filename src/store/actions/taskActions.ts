@@ -11,7 +11,7 @@ import {
     CreateTaskSuccessAction,
     CreateTaskErrorAction,
     DeleteTaskSuccessAction,
-    DeleteTaskErrorAction
+    DeleteTaskErrorAction, PerformTaskSuccessAction, PerformTaskErrorAction
 } from "store/types/taskTypes";
 import {Task} from "models/taskModels";
 
@@ -48,5 +48,11 @@ export const taskActionCreators = {
 
     performTask: (payload: number): PerformTaskAction => {
         return {type: TaskActionTypes.PERFORM_TASK, payload}
+    },
+    performTaskSuccess: (payload: Task): PerformTaskSuccessAction => {
+        return {type: TaskActionTypes.PERFORM_TASK_SUCCESS, payload}
+    },
+    performTaskFailure: (payload: string): PerformTaskErrorAction => {
+        return {type: TaskActionTypes.PERFORM_TASK_ERROR, payload}
     }
 };

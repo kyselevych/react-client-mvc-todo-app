@@ -9,6 +9,7 @@ import {taskActionCreators} from 'store/actions/taskActions';
 import {queryTasksAll} from "api/tasks/queryTasksAll";
 import {mutationTaskCreate} from "api/tasks/mutationTaskCreate";
 import {mutationTaskDelete} from "../../api/tasks/mutationTaskDelete";
+import {mutationTaskPerform} from "../../api/tasks/mutationTaskPerform";
 
 export const fetchTasksEpic = (action$: Observable<RootAction>): Observable<RootAction> => {
     return action$.pipe(
@@ -41,6 +42,18 @@ export const deleteTaskEpic = (action$: Observable<RootAction>): Observable<Root
             from(mutationTaskDelete(action.payload as number)).pipe(
                 map(json => taskActionCreators.deleteTaskSuccess(action.payload as number)),
                 catchError(err => of(taskActionCreators.deleteTaskFailure(err)))
+            )
+        )
+    )
+};
+
+export const performTaskEpic = (action$: Observable<RootAction>): Observable<RootAction> => {
+    return action$.pipe(
+        ofType(TaskActionTypes.PERFORM_TASK),
+        mergeMap(action =>
+            from(mutationTaskPerform(action.payload as number)).pipe(
+                map(json => taskActionCreators.performTaskSuccess(json.data.tasks.performTask as Task)),
+                catchError(err => of(taskActionCreators.performTaskFailure(err)))
             )
         )
     )

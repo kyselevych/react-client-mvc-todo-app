@@ -36,24 +36,45 @@ export const taskReducer = (state = initialState, action: TaskAction): TaskState
             return {...state, createTask: {status: StateStatus.LOADING, error: null}};
 
         case TaskActionTypes.CREATE_TASK_SUCCESS:
-            return {...state, tasks: [...state.tasks, action.payload], createTask: {status: StateStatus.SUCCESS, error: null}};
+            return {
+                ...state,
+                tasks: [...state.tasks, action.payload],
+                createTask: {status: StateStatus.SUCCESS, error: null}
+            };
 
         case TaskActionTypes.CREATE_TASK_ERROR:
             return {...state, createTask: {status: StateStatus.FAILURE, error: action.payload}};
 
         case TaskActionTypes.DELETE_TASK:
-            return {...state, tasks: state.tasks.filter(task => task.id !== action.payload)};
+            return {...state, deleteTask: {status: StateStatus.LOADING, error: null}};
+
+        case TaskActionTypes.DELETE_TASK_SUCCESS:
+            return {
+                ...state,
+                tasks: state.tasks.filter(task => task.id !== action.payload),
+                deleteTask: {status: StateStatus.SUCCESS, error: null}
+            };
+
+        case TaskActionTypes.DELETE_TASK_ERROR:
+            return {...state, deleteTask: {status: StateStatus.FAILURE, error: action.payload}};
 
         case TaskActionTypes.PERFORM_TASK:
+            return {...state, performTask: {status: StateStatus.LOADING, error: null}}
+
+        case TaskActionTypes.PERFORM_TASK_SUCCESS:
             return {
                 ...state,
                 tasks: state.tasks.map(task => {
-                    if (task.id === action.payload)
-                        return {...task, isDone: true, dateExecution: new Date().toString()};
+                    if (task.id === action.payload.id)
+                        return {...action.payload};
                     else
                         return task;
-                })
+                }),
+                performTask: {status: StateStatus.SUCCESS, error: null}
             }
+
+        case TaskActionTypes.PERFORM_TASK_ERROR:
+            return {...state, performTask: {status: StateStatus.FAILURE, error: action.payload}};
 
         default:
             return state;

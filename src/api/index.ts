@@ -8,9 +8,12 @@ export const graphqlRequest = async (query: string, variables: unknown) => {
         },
         body: JSON.stringify({query, variables})
     });
+    console.log(request)
+    const json = await request.json();
+
 
     if (request.ok && request.status === 200)
-        return await request.json();
+        return json;
 
     throw await request.text() || request.statusText;
 }
