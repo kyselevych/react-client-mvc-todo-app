@@ -29,14 +29,10 @@ function CreateTask() {
     const createTaskError = useTypedSelector(state => state.tasks.createTask.error);
 
     function onSubmit(values: FormValues, resetForm: { resetForm: () => void; }) {
-        const parsedCategoryId = parseInt(values.categoryId);
-
         const createTaskPayload: CreateTaskPayload = {
-            "taskCreate": {
-                name: values.name,
-                deadline: values.deadline ? values.deadline + ':00' : undefined,
-                categoryId: parsedCategoryId
-            }
+            name: values.name,
+            deadline: values.deadline ? values.deadline + ':00' : undefined,
+            categoryId: parseInt(values.categoryId)
         }
 
         createTask(createTaskPayload);

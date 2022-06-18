@@ -1,7 +1,7 @@
 import {graphqlRequest} from "api";
 import {CreateTaskPayload} from "store/types/taskTypes";
 
-export const mutationTaskCreate = async (variables: CreateTaskPayload) => {
+export const mutationTaskCreate = async (payload: CreateTaskPayload) => {
     const query = `
         mutation taskCreate($taskCreate: TaskCreateInputType!) {
             tasks {
@@ -16,6 +16,10 @@ export const mutationTaskCreate = async (variables: CreateTaskPayload) => {
             }
         }
     `;
+
+    const variables = {
+        taskCreate: payload
+    }
 
     return await graphqlRequest(query, variables);
 }

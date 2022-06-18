@@ -1,12 +1,6 @@
 import {Task} from "models/taskModels";
 import {StateStatus} from "./index";
 
-// export type TaskState = {
-//     tasks: Task[],
-//     status: TaskStatus,
-//     error: string | null
-// }
-
 export type StateDetails = {
     status: StateStatus,
     error: string | null
@@ -28,10 +22,10 @@ export enum TaskActionTypes {
     CREATE_TASK_SUCCESS = "CREATE_TASK_SUCCESS",
     CREATE_TASK_ERROR = "CREATE_TASK_ERROR",
     DELETE_TASK = "DELETE_TASK",
+    DELETE_TASK_SUCCESS = "DELETE_TASK_SUCCESS",
+    DELETE_TASK_ERROR = "DELETE_TASK_ERROR",
     PERFORM_TASK = "PERFORM_TASK",
 }
-
-
 
 // Payload Types
 
@@ -40,11 +34,13 @@ export type FetchTasksPayload = {
 }
 
 export type CreateTaskPayload = {
-    taskCreate: {
-        name: string,
-        deadline?: string,
-        categoryId?: number
-    }
+    name: string,
+    deadline?: string,
+    categoryId?: number
+}
+
+export type DeleteTaskPayload = {
+    deleteId: number
 }
 
 // Action Types
@@ -84,6 +80,16 @@ export type DeleteTaskAction = {
     payload: number
 }
 
+export type DeleteTaskSuccessAction = {
+    type: TaskActionTypes.DELETE_TASK_SUCCESS,
+    payload: number
+}
+
+export type DeleteTaskErrorAction = {
+    type: TaskActionTypes.DELETE_TASK_ERROR,
+    payload: string
+}
+
 export type PerformTaskAction = {
     type: TaskActionTypes.PERFORM_TASK,
     payload: number
@@ -99,5 +105,8 @@ export type TaskAction =
     | CreateTaskErrorAction
 
     | DeleteTaskAction
+    | DeleteTaskSuccessAction
+    | DeleteTaskErrorAction
+
     | PerformTaskAction
     ;

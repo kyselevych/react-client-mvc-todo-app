@@ -43,7 +43,13 @@ function TasksCurrent() {
                 {completedTasks?.map(task =>
                     <tr key={task.id}>
                         <td>{task.name}</td>
-                        <td>{!isNaN(task.categoryId as number) ? categories.find(category => category.id === task.categoryId)?.name : null}</td>
+                        <td>
+                            {
+                                !isNaN(task.categoryId as number)
+                                    ? categories.find(category => category.id === task.categoryId)?.name
+                                    : null
+                            }
+                        </td>
                         <td>{task.dateExecution ? moment(task.dateExecution).format("DD.MM.YYYY HH:mm") : null}</td>
                         <td>
                             <Space direction="horizontal">
