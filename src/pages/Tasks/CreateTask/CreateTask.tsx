@@ -6,7 +6,8 @@ import {Box, Button, ErrorSpan, Field, Space} from "components";
 import {useTypedSelector} from "hooks/useTypedSelector";
 import {useActions} from "hooks/useActions";
 
-import {CreateTaskPayload, TaskStatus} from "store/types/taskTypes";
+import {CreateTaskPayload} from "store/types/taskTypes";
+import {StateStatus} from "store/types";
 
 const CreateTaskSchema = Yup.object().shape({
     name: Yup.string()
@@ -24,8 +25,8 @@ interface FormValues {
 function CreateTask() {
     const {createTask} = useActions();
     const categories = useTypedSelector(state => state.categories.categories);
-    const createTaskStatus = useTypedSelector(state => state.tasks.status);
-    const createTaskError = useTypedSelector(state => state.tasks.error);
+    const createTaskStatus = useTypedSelector(state => state.tasks.createTask.status);
+    const createTaskError = useTypedSelector(state => state.tasks.createTask.error);
 
     function onSubmit(values: FormValues, resetForm: { resetForm: () => void; }) {
         const parsedCategoryId = parseInt(values.categoryId);
@@ -40,9 +41,9 @@ function CreateTask() {
 
         createTask(createTaskPayload);
 
-        if (createTaskStatus === TaskStatus.FAILURE) {
+        if (createTaskStatus === StateStatus.FAILURE) {
 
-        } else if (createTaskStatus === TaskStatus.SUCCESS) {
+        } else if (createTaskStatus === StateStatus.SUCCESS) {
             resetForm.resetForm();
         }
     }

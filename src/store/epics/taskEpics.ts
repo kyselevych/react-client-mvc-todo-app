@@ -9,7 +9,6 @@ import {taskActionCreators} from 'store/actions/taskActions';
 import {queryTasksAll} from "api/tasks/queryTasksAll";
 import {mutationTaskCreate} from "api/tasks/mutationTaskCreate";
 
-
 export const fetchTasksEpic = (action$: Observable<RootAction>): Observable<RootAction> => {
     return action$.pipe(
         ofType(TaskActionTypes.FETCH_TASKS),

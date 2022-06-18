@@ -1,9 +1,23 @@
 import {Task} from "models/taskModels";
+import {StateStatus} from "./index";
+
+// export type TaskState = {
+//     tasks: Task[],
+//     status: TaskStatus,
+//     error: string | null
+// }
+
+export type StateDetails = {
+    status: StateStatus,
+    error: string | null
+}
 
 export type TaskState = {
     tasks: Task[],
-    status: TaskStatus,
-    error: string | null
+    fetchTasks: StateDetails,
+    createTask: StateDetails,
+    performTask: StateDetails,
+    deleteTask: StateDetails
 }
 
 export enum TaskActionTypes {
@@ -17,12 +31,7 @@ export enum TaskActionTypes {
     PERFORM_TASK = "PERFORM_TASK",
 }
 
-export enum TaskStatus {
-    DEFAULT = "default",
-    LOADING = "loading",
-    SUCCESS = "success",
-    FAILURE = "failure"
-}
+
 
 // Payload Types
 

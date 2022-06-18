@@ -1,30 +1,45 @@
-import {TaskAction, TaskActionTypes, TaskState, TaskStatus} from "store/types/taskTypes";
+import {TaskAction, TaskActionTypes, TaskState} from "store/types/taskTypes";
+import {StateStatus} from "../types";
 
 const initialState: TaskState = {
     tasks: [],
-    status: TaskStatus.DEFAULT,
-    error: null
+    fetchTasks: {
+        status: StateStatus.DEFAULT,
+        error: null
+    },
+    performTask: {
+        status: StateStatus.DEFAULT,
+        error: null
+    },
+    createTask: {
+        status: StateStatus.DEFAULT,
+        error: null
+    },
+    deleteTask: {
+        status: StateStatus.DEFAULT,
+        error: null
+    }
 }
 
 export const taskReducer = (state = initialState, action: TaskAction): TaskState => {
     switch (action.type) {
         case TaskActionTypes.FETCH_TASKS:
-            return {...state, tasks: [], status: TaskStatus.LOADING, error: null};
+            return {...state, tasks: [], fetchTasks: {status: StateStatus.LOADING, error: null}};
 
         case TaskActionTypes.FETCH_TASKS_SUCCESS:
-            return {...state, tasks: action.payload, status: TaskStatus.SUCCESS, error: null};
+            return {...state, tasks: action.payload, fetchTasks: {status: StateStatus.SUCCESS, error: null}};
 
         case TaskActionTypes.FETCH_TASKS_ERROR:
-            return {...state, tasks: [], status: TaskStatus.FAILURE, error: action.payload};
+            return {...state, tasks: [], fetchTasks: {status: StateStatus.FAILURE, error: action.payload}};
 
         case TaskActionTypes.CREATE_TASK:
-            return {...state, status: TaskStatus.LOADING, error: null};
+            return {...state, createTask: {status: StateStatus.LOADING, error: null}};
 
         case TaskActionTypes.CREATE_TASK_SUCCESS:
-            return {...state, tasks: [...state.tasks, action.payload], status: TaskStatus.SUCCESS, error: null};
+            return {...state, tasks: [...state.tasks, action.payload], createTask: {status: StateStatus.SUCCESS, error: null}};
 
         case TaskActionTypes.CREATE_TASK_ERROR:
-            return {...state, status: TaskStatus.FAILURE, error: action.payload};
+            return {...state, createTask: {status: StateStatus.FAILURE, error: action.payload}};
 
         case TaskActionTypes.DELETE_TASK:
             return {...state, tasks: state.tasks.filter(task => task.id !== action.payload)};
