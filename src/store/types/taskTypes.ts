@@ -1,5 +1,5 @@
-import {Task} from "models/taskModels";
-import {StateDetails, StateStatus} from "./index";
+import {CreateTaskInput, FetchTasksInput, Task} from "models/taskModels";
+import {StateDetails} from "./index";
 
 export type TaskState = {
     tasks: Task[],
@@ -24,27 +24,11 @@ export enum TaskActionTypes {
     PERFORM_TASK_FAILURE = "PERFORM_TASK_FAILURE",
 }
 
-// Payload Types
-
-export type FetchTasksPayload = {
-    categoryId?: number | null
-}
-
-export type CreateTaskPayload = {
-    name: string,
-    deadline?: string,
-    categoryId?: number
-}
-
-export type DeleteTaskPayload = {
-    deleteId: number
-}
-
 // Action Types
 
 export type FetchTasksAction = {
     type: TaskActionTypes.FETCH_TASKS,
-    payload: FetchTasksPayload
+    payload: FetchTasksInput
 }
 
 export type FetchTasksSuccessAction = {
@@ -59,7 +43,7 @@ export type FetchTasksErrorAction = {
 
 export type CreateTaskAction = {
     type: TaskActionTypes.CREATE_TASK,
-    payload: CreateTaskPayload
+    payload: CreateTaskInput
 }
 
 export type CreateTaskSuccessAction = {

@@ -6,17 +6,17 @@ import {
     FetchTasksAction,
     FetchTasksSuccessAction,
     FetchTasksErrorAction,
-    FetchTasksPayload,
-    CreateTaskPayload,
     CreateTaskSuccessAction,
     CreateTaskErrorAction,
     DeleteTaskSuccessAction,
-    DeleteTaskErrorAction, PerformTaskSuccessAction, PerformTaskErrorAction
+    DeleteTaskErrorAction,
+    PerformTaskSuccessAction,
+    PerformTaskErrorAction
 } from "store/types/taskTypes";
-import {Task} from "models/taskModels";
+import {CreateTaskInput, FetchTasksInput, Task} from "models/taskModels";
 
 export const taskActionCreators = {
-    fetchTasks: (payload: FetchTasksPayload): FetchTasksAction => {
+    fetchTasks: (payload: FetchTasksInput): FetchTasksAction => {
         return {type: TaskActionTypes.FETCH_TASKS, payload}
     },
     fetchTasksSuccess: (payload: Task[]): FetchTasksSuccessAction => {
@@ -26,7 +26,7 @@ export const taskActionCreators = {
         return {type: TaskActionTypes.FETCH_TASKS_FAILURE, payload}
     },
 
-    createTask: (payload: CreateTaskPayload): CreateTaskAction => {
+    createTask: (payload: CreateTaskInput): CreateTaskAction => {
         return {type: TaskActionTypes.CREATE_TASK, payload}
     },
     createTaskSuccess: (payload: Task): CreateTaskSuccessAction => {

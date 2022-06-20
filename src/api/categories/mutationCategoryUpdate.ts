@@ -1,5 +1,6 @@
-import {graphqlRequest} from "api";
-import {CreateCategoryInput, EditCategoryInput} from "models/categoryModels";
+import {graphqlRequest} from "api/graphqlRequest";
+
+import {EditCategoryInput} from "models/categoryModels";
 
 export const mutationCategoryUpdate = async (payload: EditCategoryInput) => {
     const query = `

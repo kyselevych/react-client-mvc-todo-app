@@ -1,4 +1,4 @@
-import {graphqlRequest} from "api";
+import {graphqlRequest} from "api/graphqlRequest";
 
 export const mutationTaskDelete = async (taskId: number) => {
     const query = `

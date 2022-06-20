@@ -6,8 +6,8 @@ import {Box, Button, ErrorSpan, Field, Space} from "components";
 import {useTypedSelector} from "hooks/useTypedSelector";
 import {useActions} from "hooks/useActions";
 
-import {CreateTaskPayload} from "store/types/taskTypes";
 import {StateStatus} from "store/types";
+import {CreateTaskInput} from "models/taskModels";
 
 const CreateTaskSchema = Yup.object().shape({
     name: Yup.string()
@@ -29,7 +29,7 @@ function CreateTask() {
     const createTaskError = useTypedSelector(state => state.tasks.createTask.error);
 
     function onSubmit(values: FormValues, resetForm: { resetForm: () => void; }) {
-        const createTaskPayload: CreateTaskPayload = {
+        const createTaskPayload: CreateTaskInput = {
             name: values.name,
             deadline: values.deadline ? values.deadline + ':00' : undefined,
             categoryId: parseInt(values.categoryId)

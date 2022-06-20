@@ -1,13 +1,12 @@
 import {catchError, from, map, mergeMap, Observable, of} from "rxjs";
-import {RootAction} from "../types";
 import {ofType} from "redux-observable";
-import {CategoryActionTypes, EditCategoryAction} from "../types/categoryTypes";
-import {queryCategoriesAll} from "api/categories/queryCategoriesAll";
+
+import {CategoryActionTypes} from "../types/categoryTypes";
+import {RootAction} from "../types";
+
+import {queryCategoriesAll, mutationCategoryUpdate, mutationCategoryDelete, mutationCategoryCreate} from "api/categories";
 import {categoryActionCreators} from "../actions/categoryActions";
-import {mutationCategoryUpdate} from "../../api/categories/mutationCategoryUpdate";
-import {Category, CreateCategoryInput, EditCategoryInput} from "../../models/categoryModels";
-import {mutationCategoryDelete} from "../../api/categories/mutationCategoryDelete";
-import {mutationCategoryCreate} from "../../api/categories/mutationCategoryCreate";
+import {Category, CreateCategoryInput, EditCategoryInput} from "models/categoryModels";
 
 export const fetchCategoriesEpic = (action$: Observable<RootAction>): Observable<RootAction> => {
     return action$.pipe(
@@ -56,3 +55,12 @@ export const createCategoryEpic = (action$: Observable<RootAction>): Observable<
         )
     )
 };
+
+const categoryEpics = [
+    fetchCategoriesEpic,
+    editCategoryEpic,
+    deleteCategoryEpic,
+    createCategoryEpic
+];
+
+export default categoryEpics;

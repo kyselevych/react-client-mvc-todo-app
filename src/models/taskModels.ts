@@ -1,6 +1,6 @@
 import {Category} from "models/categoryModels";
 
-export interface Task {
+export type Task = {
     id: number,
     name: string,
     isDone: boolean
@@ -10,9 +10,12 @@ export interface Task {
     category: Category | null
 }
 
-export interface CreateTaskInput {
+export type CreateTaskInput = {
     name: string,
-    deadline: string,
-    categoryId: number,
-    category: Category | null
+    deadline?: string,
+    categoryId?: number
+}
+
+export type FetchTasksInput = {
+    categoryId?: number | null
 }

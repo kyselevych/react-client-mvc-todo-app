@@ -1,4 +1,4 @@
-import {graphqlRequest} from "api";
+import {graphqlRequest} from "api/graphqlRequest";
 import {CreateCategoryInput} from "models/categoryModels";
 
 export const mutationCategoryCreate = async (payload: CreateCategoryInput) => {
