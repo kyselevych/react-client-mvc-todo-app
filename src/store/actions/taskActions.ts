@@ -23,7 +23,7 @@ export const taskActionCreators = {
         return {type: TaskActionTypes.FETCH_TASKS_SUCCESS, payload}
     },
     fetchTasksFailure: (payload: string): FetchTasksErrorAction => {
-        return {type: TaskActionTypes.FETCH_TASKS_ERROR, payload}
+        return {type: TaskActionTypes.FETCH_TASKS_FAILURE, payload}
     },
 
     createTask: (payload: CreateTaskPayload): CreateTaskAction => {
@@ -33,7 +33,7 @@ export const taskActionCreators = {
         return {type: TaskActionTypes.CREATE_TASK_SUCCESS, payload}
     },
     createTaskFailure: (payload: string): CreateTaskErrorAction => {
-        return {type: TaskActionTypes.CREATE_TASK_ERROR, payload}
+        return {type: TaskActionTypes.CREATE_TASK_FAILURE, payload}
     },
 
     deleteTask: (payload: number): DeleteTaskAction => {
@@ -43,7 +43,7 @@ export const taskActionCreators = {
         return {type: TaskActionTypes.DELETE_TASK_SUCCESS, payload}
     },
     deleteTaskFailure: (payload: string): DeleteTaskErrorAction => {
-        return {type: TaskActionTypes.DELETE_TASK_ERROR, payload}
+        return {type: TaskActionTypes.DELETE_TASK_FAILURE, payload}
     },
 
     performTask: (payload: number): PerformTaskAction => {
@@ -53,6 +53,6 @@ export const taskActionCreators = {
         return {type: TaskActionTypes.PERFORM_TASK_SUCCESS, payload}
     },
     performTaskFailure: (payload: string): PerformTaskErrorAction => {
-        return {type: TaskActionTypes.PERFORM_TASK_ERROR, payload}
+        return {type: TaskActionTypes.PERFORM_TASK_FAILURE, payload}
     }
 };

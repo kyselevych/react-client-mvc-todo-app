@@ -29,7 +29,7 @@ export const taskReducer = (state = initialState, action: TaskAction): TaskState
         case TaskActionTypes.FETCH_TASKS_SUCCESS:
             return {...state, tasks: action.payload, fetchTasks: {status: StateStatus.SUCCESS, error: null}};
 
-        case TaskActionTypes.FETCH_TASKS_ERROR:
+        case TaskActionTypes.FETCH_TASKS_FAILURE:
             return {...state, tasks: [], fetchTasks: {status: StateStatus.FAILURE, error: action.payload}};
 
         case TaskActionTypes.CREATE_TASK:
@@ -42,7 +42,7 @@ export const taskReducer = (state = initialState, action: TaskAction): TaskState
                 createTask: {status: StateStatus.SUCCESS, error: null}
             };
 
-        case TaskActionTypes.CREATE_TASK_ERROR:
+        case TaskActionTypes.CREATE_TASK_FAILURE:
             return {...state, createTask: {status: StateStatus.FAILURE, error: action.payload}};
 
         case TaskActionTypes.DELETE_TASK:
@@ -55,7 +55,7 @@ export const taskReducer = (state = initialState, action: TaskAction): TaskState
                 deleteTask: {status: StateStatus.SUCCESS, error: null}
             };
 
-        case TaskActionTypes.DELETE_TASK_ERROR:
+        case TaskActionTypes.DELETE_TASK_FAILURE:
             return {...state, deleteTask: {status: StateStatus.FAILURE, error: action.payload}};
 
         case TaskActionTypes.PERFORM_TASK:
@@ -73,7 +73,7 @@ export const taskReducer = (state = initialState, action: TaskAction): TaskState
                 performTask: {status: StateStatus.SUCCESS, error: null}
             }
 
-        case TaskActionTypes.PERFORM_TASK_ERROR:
+        case TaskActionTypes.PERFORM_TASK_FAILURE:
             return {...state, performTask: {status: StateStatus.FAILURE, error: action.payload}};
 
         default:

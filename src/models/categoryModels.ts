@@ -1,13 +1,13 @@
-export interface Category {
+export type Category = {
     id: number,
     name: string
 }
 
-export interface CreateCategoryInput {
+export type CreateCategoryInput = {
     name: string
 }
 
-export interface EditCategoryInput {
+export type EditCategoryInput = {
     id: number
     name: string
 }

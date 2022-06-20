@@ -9,3 +9,8 @@ export enum StateStatus {
     SUCCESS = "success",
     FAILURE = "failure"
 }
+
+export type StateDetails = {
+    status: StateStatus,
+    error: string | null
+}

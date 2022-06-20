@@ -1,10 +1,5 @@
 import {Task} from "models/taskModels";
-import {StateStatus} from "./index";
-
-export type StateDetails = {
-    status: StateStatus,
-    error: string | null
-}
+import {StateDetails, StateStatus} from "./index";
 
 export type TaskState = {
     tasks: Task[],
@@ -17,16 +12,16 @@ export type TaskState = {
 export enum TaskActionTypes {
     FETCH_TASKS = "FETCH_TASKS",
     FETCH_TASKS_SUCCESS = "FETCH_TASKS_SUCCESS",
-    FETCH_TASKS_ERROR = "FETCH_TASKS_ERROR",
+    FETCH_TASKS_FAILURE = "FETCH_TASKS_FAILURE",
     CREATE_TASK = "CREATE_TASK",
     CREATE_TASK_SUCCESS = "CREATE_TASK_SUCCESS",
-    CREATE_TASK_ERROR = "CREATE_TASK_ERROR",
+    CREATE_TASK_FAILURE = "CREATE_TASK_FAILURE",
     DELETE_TASK = "DELETE_TASK",
     DELETE_TASK_SUCCESS = "DELETE_TASK_SUCCESS",
-    DELETE_TASK_ERROR = "DELETE_TASK_ERROR",
+    DELETE_TASK_FAILURE = "DELETE_TASK_FAILURE",
     PERFORM_TASK = "PERFORM_TASK",
     PERFORM_TASK_SUCCESS = "PERFORM_TASK_SUCCESS",
-    PERFORM_TASK_ERROR = "PERFORM_TASK_ERROR",
+    PERFORM_TASK_FAILURE = "PERFORM_TASK_FAILURE",
 }
 
 // Payload Types
@@ -58,7 +53,7 @@ export type FetchTasksSuccessAction = {
 }
 
 export type FetchTasksErrorAction = {
-    type: TaskActionTypes.FETCH_TASKS_ERROR,
+    type: TaskActionTypes.FETCH_TASKS_FAILURE,
     payload: string
 }
 
@@ -73,7 +68,7 @@ export type CreateTaskSuccessAction = {
 }
 
 export type CreateTaskErrorAction = {
-    type: TaskActionTypes.CREATE_TASK_ERROR,
+    type: TaskActionTypes.CREATE_TASK_FAILURE,
     payload: string
 }
 
@@ -88,7 +83,7 @@ export type DeleteTaskSuccessAction = {
 }
 
 export type DeleteTaskErrorAction = {
-    type: TaskActionTypes.DELETE_TASK_ERROR,
+    type: TaskActionTypes.DELETE_TASK_FAILURE,
     payload: string
 }
 
@@ -103,7 +98,7 @@ export type PerformTaskSuccessAction = {
 }
 
 export type PerformTaskErrorAction = {
-    type: TaskActionTypes.PERFORM_TASK_ERROR,
+    type: TaskActionTypes.PERFORM_TASK_FAILURE,
     payload: string
 }
 

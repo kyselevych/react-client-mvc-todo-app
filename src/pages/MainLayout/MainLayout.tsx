@@ -1,9 +1,17 @@
-import React from "react";
+import React, {useEffect} from "react";
+
+import {useActions} from "hooks/useActions";
 
 import {Outlet} from "react-router-dom";
 import {Header} from "components";
 
 function MainLayout() {
+    const {fetchCategories} = useActions();
+
+    useEffect(() => {
+        fetchCategories();
+    }, []);
+
 	return (
 		<>
 			<Header/>
