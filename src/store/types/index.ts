@@ -1,7 +1,8 @@
 import type {TaskAction} from "./taskTypes";
 import type {CategoryAction} from "./categoryTypes";
+import {RepositoryAction} from "./repositoryTypes";
 
-export type RootAction = TaskAction | CategoryAction;
+export type RootAction = TaskAction | CategoryAction | RepositoryAction ;
 
 export enum StateStatus {
     DEFAULT = "default",

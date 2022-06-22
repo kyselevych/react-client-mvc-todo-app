@@ -1,6 +1,7 @@
-import React from "react";
+import React, {useEffect} from "react";
 import * as Yup from "yup";
 import {Form, Formik} from 'formik';
+import {toast, ToastContainer} from "react-toastify";
 import {Box, Button, ErrorSpan, Field, Space} from "components";
 
 import {useTypedSelector} from "hooks/useTypedSelector";
@@ -8,6 +9,7 @@ import {useActions} from "hooks/useActions";
 
 import {StateStatus} from "store/types";
 import {CreateTaskInput} from "models/taskModels";
+
 
 const CreateTaskSchema = Yup.object().shape({
     name: Yup.string()
@@ -28,7 +30,7 @@ function CreateTask() {
     const createTaskStatus = useTypedSelector(state => state.tasks.createTask.status);
     const createTaskError = useTypedSelector(state => state.tasks.createTask.error);
 
-    function onSubmit(values: FormValues, resetForm: { resetForm: () => void; }) {
+    const onSubmit = (values: FormValues, resetForm: { resetForm: () => void; }) => {
         const createTaskPayload: CreateTaskInput = {
             name: values.name,
             deadline: values.deadline ? values.deadline + ':00' : undefined,
@@ -36,65 +38,78 @@ function CreateTask() {
         }
 
         createTask(createTaskPayload);
-
-        if (createTaskStatus === StateStatus.FAILURE) {
-
-        } else if (createTaskStatus === StateStatus.SUCCESS) {
-            resetForm.resetForm();
-        }
+        resetForm.resetForm();
     }
 
+    useEffect(() => {
+        switch (createTaskStatus) {
+            case StateStatus.SUCCESS: {
+                toast.success("Task successfully created!")
+                console.log('yep')
+                break;
+            }
+            case StateStatus.FAILURE: {
+                console.log('no')
+                toast("Unknown error!", {position: "top-center"});
+                break;
+            }
+        }
+    }, [createTaskStatus]);
+
     return (
-        <Box>
-            <h2>Create task</h2>
-            <Formik<FormValues>
-                initialValues={{
-                    name: '',
-                    categoryId: '',
-                    deadline: '',
-                }}
-                onSubmit={onSubmit}
-                validationSchema={CreateTaskSchema}
-            >
-                {props => (
-                    <Form>
-                        <Space direction="horizontal" style={{alignItems: "end"}} maxGrow={true}>
-                            <Field label="Name">
-                                <input
-                                    name="name"
-                                    onChange={props.handleChange}
-                                    value={props.values.name}
-                                />
-                                <ErrorSpan>{props.errors.name}</ErrorSpan>
-                            </Field>
-                            <Field label="Category">
-                                <select
-                                    name="categoryId"
-                                    onChange={props.handleChange}
-                                    value={props.values.categoryId}
-                                >
-                                    <option value="">None</option>
-                                    {categories?.map(category =>
-                                        <option value={category.id} key={category.id}>{category.name}</option>
-                                    )}
-                                </select>
-                                <ErrorSpan>{props.errors.categoryId}</ErrorSpan>
-                            </Field>
-                            <Field label="Deadline">
-                                <input
-                                    name="deadline"
-                                    type="datetime-local"
-                                    onChange={props.handleChange}
-                                    value={props.values.deadline}
-                                />
-                                <ErrorSpan>{props.errors.deadline}</ErrorSpan>
-                            </Field>
-                            <Button type="submit" style={{marginBottom: "15px"}}>Create</Button>
-                        </Space>
-                    </Form>
-                )}
-            </Formik>
-        </Box>
+        <>
+            <Box>
+                <h2>Create task</h2>
+                <Formik<FormValues>
+                    initialValues={{
+                        name: '',
+                        categoryId: '',
+                        deadline: '',
+                    }}
+                    onSubmit={onSubmit}
+                    validationSchema={CreateTaskSchema}
+                >
+                    {props => (
+                        <Form>
+                            <Space direction="horizontal" style={{alignItems: "end"}} maxGrow={true}>
+                                <Field label="Name">
+                                    <input
+                                        name="name"
+                                        onChange={props.handleChange}
+                                        value={props.values.name}
+                                    />
+                                    <ErrorSpan>{props.errors.name}</ErrorSpan>
+                                </Field>
+                                <Field label="Category">
+                                    <select
+                                        name="categoryId"
+                                        onChange={props.handleChange}
+                                        value={props.values.categoryId}
+                                    >
+                                        <option value="">None</option>
+                                        {categories?.map(category =>
+                                            <option value={category.id} key={category.id}>{category.name}</option>
+                                        )}
+                                    </select>
+                                    <ErrorSpan>{props.errors.categoryId}</ErrorSpan>
+                                </Field>
+                                <Field label="Deadline">
+                                    <input
+                                        name="deadline"
+                                        type="datetime-local"
+                                        onChange={props.handleChange}
+                                        value={props.values.deadline}
+                                    />
+                                    <ErrorSpan>{props.errors.deadline}</ErrorSpan>
+                                </Field>
+                                <Button type="submit" style={{marginBottom: "15px"}}>Create</Button>
+                            </Space>
+                        </Form>
+                    )}
+                </Formik>
+            </Box>
+            <ToastContainer />
+        </>
     );
 }
 

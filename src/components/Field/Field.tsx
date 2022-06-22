@@ -35,7 +35,7 @@ function Field(props: FieldProps) {
 
     return (
         <label className={`field ${themeClass}`} style={style}>
-            <span className="field__label">{label}</span>
+            {label && <span className="field__label">{label}</span>}
             {children}
         </label>
     );

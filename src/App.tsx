@@ -2,17 +2,15 @@ import React from "react";
 import {BrowserRouter} from "react-router-dom";
 import {AppRouter} from "components";
 
-import 'antd/dist/antd.min.css';
+import 'react-toastify/dist/ReactToastify.css';
 import './styles/app.scss';
 
 function App() {
-	return (
-        <React.StrictMode>
-            <BrowserRouter>
-                <AppRouter/>
-            </BrowserRouter>
-        </React.StrictMode>
-	);
+    return (
+        <BrowserRouter>
+            <AppRouter/>
+        </BrowserRouter>
+    );
 }
 
 export default App;

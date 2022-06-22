@@ -27,6 +27,7 @@ export const taskReducer = (state = initialState, action: TaskAction): TaskState
             return {...state, tasks: [], fetchTasks: {status: StateStatus.LOADING, error: null}};
 
         case TaskActionTypes.FETCH_TASKS_SUCCESS:
+
             return {...state, tasks: action.payload, fetchTasks: {status: StateStatus.SUCCESS, error: null}};
 
         case TaskActionTypes.FETCH_TASKS_FAILURE:
@@ -75,6 +76,15 @@ export const taskReducer = (state = initialState, action: TaskAction): TaskState
 
         case TaskActionTypes.PERFORM_TASK_FAILURE:
             return {...state, performTask: {status: StateStatus.FAILURE, error: action.payload}};
+
+        case TaskActionTypes.SET_DEFAULT_STATUS:
+            return {
+                ...state,
+                performTask: {status: StateStatus.DEFAULT, error: null},
+                createTask: {status: StateStatus.DEFAULT, error: null},
+                deleteTask: {status: StateStatus.DEFAULT, error: null},
+                fetchTasks: {status: StateStatus.DEFAULT, error: null}
+            };
 
         default:
             return state;

@@ -13,10 +13,11 @@ import CreateTask from "./CreateTask/CreateTask";
 function Tasks() {
     const {fetchTasks} = useActions();
     const filterCategoryId = useTypedSelector(state => state.filterTasks.categoryId);
+    const currentRepository = useTypedSelector(state => state.repositories.currentRepository);
 
     useEffect(() => {
         fetchTasks({categoryId: filterCategoryId});
-    }, [fetchTasks, filterCategoryId]);
+    }, [fetchTasks, filterCategoryId, currentRepository]);
 
 	return (
 		<>

@@ -22,6 +22,7 @@ export enum TaskActionTypes {
     PERFORM_TASK = "PERFORM_TASK",
     PERFORM_TASK_SUCCESS = "PERFORM_TASK_SUCCESS",
     PERFORM_TASK_FAILURE = "PERFORM_TASK_FAILURE",
+    SET_DEFAULT_STATUS = "SET_DEFAULT_STATUS"
 }
 
 // Action Types
@@ -86,6 +87,11 @@ export type PerformTaskErrorAction = {
     payload: string
 }
 
+export type SetDefaultStatusAction = {
+    type: TaskActionTypes.SET_DEFAULT_STATUS,
+    payload?: undefined
+}
+
 export type TaskAction =
     | FetchTasksAction
     | FetchTasksSuccessAction
@@ -102,4 +108,6 @@ export type TaskAction =
     | PerformTaskAction
     | PerformTaskSuccessAction
     | PerformTaskErrorAction
+
+    | SetDefaultStatusAction
     ;
