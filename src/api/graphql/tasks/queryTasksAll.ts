@@ -1,7 +1,7 @@
-import {graphqlRequest} from "api/graphqlRequest";
 import {FetchTasksInput} from "models/taskModels";
+import {getGraphqlRequestParams} from "api/common/getGraphqlRequestParams";
 
-export const queryTasksAll = async (variables?: FetchTasksInput) => {
+export const queryTasksAll = (payload?: FetchTasksInput) => {
     const query = `
         query tasksAll($categoryId: Int) {
             tasks {
@@ -17,5 +17,9 @@ export const queryTasksAll = async (variables?: FetchTasksInput) => {
         }
     `;
 
-    return await graphqlRequest(query, variables);
+    const variables = {
+        ...payload
+    }
+
+    return getGraphqlRequestParams(query, variables);
 }

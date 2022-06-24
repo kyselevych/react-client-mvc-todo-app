@@ -8,9 +8,9 @@ import {sortDateCompare} from "helpers/sortDateCompare";
 import {Table, Box, Button, Space} from "components";
 
 function TasksCurrent() {
-    const {performTask, deleteTask} = useActions();
+    const {performTask, removalTask} = useActions();
     const categories = useTypedSelector(state => state.categories.categories);
-    const currentTasks = useTypedSelector(state => state.tasks.tasks.filter(task => !task.isDone))
+    const currentTasks = useTypedSelector(state => state.tasks.filter(task => !task.isDone))
         .sort(sortDateCompare("deadline"));
 
     const columns = [
@@ -55,7 +55,7 @@ function TasksCurrent() {
                                 <Button
                                     size="small"
                                     styleType="secondary"
-                                    onClick={() => deleteTask(task.id)}
+                                    onClick={() => removalTask(task.id)}
                                 >Delete</Button>
                             </Space>
                         </td>

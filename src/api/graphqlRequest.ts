@@ -1,4 +1,4 @@
-const BASE_URL_GRAPHQL = "https://localhost:7080/graphql";
+const BASE_URL_GRAPHQL = process.env.REACT_APP_GRAPHQL_URL!;
 
 export const graphqlRequest = async (query: string, variables?: unknown) => {
     const request = await fetch(BASE_URL_GRAPHQL, {

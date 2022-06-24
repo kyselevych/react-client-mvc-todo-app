@@ -3,9 +3,8 @@ import {ofType} from "redux-observable";
 
 import {RootAction} from "../types";
 import {RepositoryActionTypes} from "../types/repositoryTypes";
-import {mutationStorageSwitch, queryStorageAll, queryStorageCurrent} from "api/repositories";
+import {mutationStorageSwitch, queryStorageAll, queryStorageCurrent} from "api/graphql/repositories";
 import {repositoryActionCreators} from "../actions/repositoryActions";
-
 
 export const fetchRepositoriesEpic = (action$: Observable<RootAction>): Observable<RootAction> => {
     return action$.pipe(

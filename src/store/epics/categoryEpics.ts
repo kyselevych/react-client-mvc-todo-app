@@ -4,7 +4,7 @@ import {ofType} from "redux-observable";
 import {CategoryActionTypes} from "../types/categoryTypes";
 import {RootAction} from "../types";
 
-import {queryCategoriesAll, mutationCategoryUpdate, mutationCategoryDelete, mutationCategoryCreate} from "api/categories";
+import {queryCategoriesAll, mutationCategoryUpdate, mutationCategoryDelete, mutationCategoryCreate} from "api/graphql/categories";
 import {categoryActionCreators} from "../actions/categoryActions";
 import {Category, CreateCategoryInput, EditCategoryInput} from "models/categoryModels";
 

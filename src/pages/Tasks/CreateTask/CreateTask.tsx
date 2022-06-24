@@ -27,8 +27,6 @@ interface FormValues {
 function CreateTask() {
     const {createTask} = useActions();
     const categories = useTypedSelector(state => state.categories.categories);
-    const createTaskStatus = useTypedSelector(state => state.tasks.createTask.status);
-    const createTaskError = useTypedSelector(state => state.tasks.createTask.error);
 
     const onSubmit = (values: FormValues, resetForm: { resetForm: () => void; }) => {
         const createTaskPayload: CreateTaskInput = {
@@ -40,21 +38,6 @@ function CreateTask() {
         createTask(createTaskPayload);
         resetForm.resetForm();
     }
-
-    useEffect(() => {
-        switch (createTaskStatus) {
-            case StateStatus.SUCCESS: {
-                toast.success("Task successfully created!")
-                console.log('yep')
-                break;
-            }
-            case StateStatus.FAILURE: {
-                console.log('no')
-                toast("Unknown error!", {position: "top-center"});
-                break;
-            }
-        }
-    }, [createTaskStatus]);
 
     return (
         <>

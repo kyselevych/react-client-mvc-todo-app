@@ -1,8 +1,7 @@
-import {graphqlRequest} from "api/graphqlRequest";
-
 import {CreateTaskInput} from "models/taskModels";
+import {getGraphqlRequestParams} from "api/common/getGraphqlRequestParams";
 
-export const mutationTaskCreate = async (payload: CreateTaskInput) => {
+export const mutationTaskCreate = (payload: CreateTaskInput) => {
     const query = `
         mutation taskCreate($taskCreate: TaskCreateInputType!) {
             tasks {
@@ -22,5 +21,5 @@ export const mutationTaskCreate = async (payload: CreateTaskInput) => {
         taskCreate: payload
     }
 
-    return await graphqlRequest(query, variables);
+    return getGraphqlRequestParams(query, variables);
 }

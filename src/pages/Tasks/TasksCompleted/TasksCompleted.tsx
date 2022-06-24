@@ -8,9 +8,9 @@ import {useActions} from "hooks/useActions";
 import {sortDateCompare} from "helpers/sortDateCompare";
 
 function TasksCurrent() {
-    const {deleteTask} = useActions();
+    const {removalTask} = useActions();
     const categories = useTypedSelector(state => state.categories.categories);
-    const completedTasks = useTypedSelector(state => state.tasks.tasks.filter(task => task.isDone))
+    const completedTasks = useTypedSelector(state => state.tasks.filter(task => task.isDone))
         .sort(sortDateCompare("dateExecution", true));
 
     const columns = [
@@ -56,7 +56,7 @@ function TasksCurrent() {
                                 <Button
                                     size="small"
                                     styleType="secondary"
-                                    onClick={() => deleteTask(task.id)}
+                                    onClick={() => removalTask(task.id)}
                                 >Delete</Button>
                             </Space>
                         </td>

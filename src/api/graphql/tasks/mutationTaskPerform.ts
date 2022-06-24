@@ -1,6 +1,6 @@
-import {graphqlRequest} from "api/graphqlRequest";
+import {getGraphqlRequestParams} from "api/common/getGraphqlRequestParams";
 
-export const mutationTaskPerform = async (taskId: number) => {
+export const mutationTaskPerform = (taskId: number) => {
     const query = `
         mutation taskPerform($performId: Int!) {
             tasks {
@@ -20,5 +20,5 @@ export const mutationTaskPerform = async (taskId: number) => {
         performId: taskId
     }
 
-    return await graphqlRequest(query, variables);
+    return getGraphqlRequestParams(query, variables);
 }
