@@ -1,8 +1,8 @@
 import {catchError, filter, from, map, mergeMap, Observable, of} from "rxjs";
 
 import {apiRequest} from "api/common/apiRequest";
-import {apiActionCreators} from "../actions/apiActions";
-import {ApiActionTypes, ApiRequestAction} from "../types/apiTypes";
+import {apiActionCreators} from "../actions/api.actions";
+import {ApiActionTypes, ApiRequestAction} from "../types/api.types";
 
 export const apiRequestEpic = (action$: Observable<ApiRequestAction>) => {
     return action$.pipe(

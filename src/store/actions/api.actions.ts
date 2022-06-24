@@ -1,4 +1,4 @@
-import {ApiActionTypes, ApiErrorAction, ApiRequestAction, ApiSuccessAction} from "../types/apiTypes";
+import {ApiActionTypes, ApiErrorAction, ApiRequestAction, ApiSuccessAction} from "../types/api.types";
 
 export type ApiRequestParams = {
     body: string,

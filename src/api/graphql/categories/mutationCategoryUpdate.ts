@@ -1,8 +1,7 @@
-import {graphqlRequest} from "api/graphqlRequest";
-
+import {getGraphqlRequestParams} from "api/common/getGraphqlRequestParams";
 import {EditCategoryInput} from "models/categoryModels";
 
-export const mutationCategoryUpdate = async (payload: EditCategoryInput) => {
+export const mutationCategoryUpdate = (payload: EditCategoryInput) => {
     const query = `
         mutation categoryUpdate($categoryUpdate: CategoryUpdateInputType!) {
             categories {
@@ -18,5 +17,5 @@ export const mutationCategoryUpdate = async (payload: EditCategoryInput) => {
         categoryUpdate: payload
     };
 
-    return await graphqlRequest(query, variables);
+    return getGraphqlRequestParams(query, variables);
 }

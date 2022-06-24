@@ -1,8 +1,8 @@
 import {taskActionCreators} from "./tasks.actions";
-import {categoryActionCreators} from "./categoryActions";
+import {categoryActionCreators} from "./category.actions";
 import {filterTasksActionCreators} from "./filterTasksActions";
 import {repositoryActionCreators} from "./repositoryActions";
-import {apiActionCreators} from "./apiActions";
+import {apiActionCreators} from "./api.actions";
 
 export const allActionCreators = {
     ...taskActionCreators,

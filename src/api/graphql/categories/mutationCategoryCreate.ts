@@ -1,7 +1,7 @@
-import {graphqlRequest} from "api/graphqlRequest";
+import {getGraphqlRequestParams} from "api/common/getGraphqlRequestParams";
 import {CreateCategoryInput} from "models/categoryModels";
 
-export const mutationCategoryCreate = async (payload: CreateCategoryInput) => {
+export const mutationCategoryCreate = (payload: CreateCategoryInput) => {
     const query = `
         mutation categoryCreate($categoryCreate: CategoryCreateInputType!) {
             categories {
@@ -17,5 +17,5 @@ export const mutationCategoryCreate = async (payload: CreateCategoryInput) => {
         categoryCreate: payload
     };
 
-    return await graphqlRequest(query, variables);
+    return getGraphqlRequestParams(query, variables);
 }

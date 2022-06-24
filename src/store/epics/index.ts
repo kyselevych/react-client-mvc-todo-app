@@ -1,5 +1,5 @@
 import {combineEpics} from "redux-observable";
-import categoryEpics from "./categoryEpics";
+import categoryEpics from "./category.epics";
 import {taskEpics} from "./task.epics";
 import repositoryEpics from "./repositoryEpics";
 import {apiEpics} from "./api.epics";

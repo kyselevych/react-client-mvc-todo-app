@@ -30,8 +30,8 @@ const EditTaskSchema = yup.object().shape({
 });
 
 function CategoriesList() {
-    const {deleteCategory, editCategory} = useActions();
-    const categories = useTypedSelector(state => state.categories.categories);
+    const {removalCategory, editCategory} = useActions();
+    const categories = useTypedSelector(state => state.categories);
 
     const [editMode, setEditMode] = useState<EditModeState>({status: false, rowId: null});
 
@@ -128,7 +128,7 @@ function CategoriesList() {
                                         <Button
                                             size="small"
                                             styleType="secondary"
-                                            onClick={() => deleteCategory(category.id)}
+                                            onClick={() => removalCategory(category.id)}
                                         >Delete</Button>
                                     </>
                                 }

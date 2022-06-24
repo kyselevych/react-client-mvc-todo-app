@@ -9,7 +9,7 @@ import {sortDateCompare} from "helpers/sortDateCompare";
 
 function TasksCurrent() {
     const {removalTask} = useActions();
-    const categories = useTypedSelector(state => state.categories.categories);
+    const categories = useTypedSelector(state => state.categories);
     const completedTasks = useTypedSelector(state => state.tasks.filter(task => task.isDone))
         .sort(sortDateCompare("dateExecution", true));
 

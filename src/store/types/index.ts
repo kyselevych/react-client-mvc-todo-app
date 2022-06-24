@@ -1,7 +1,7 @@
 import type {TaskAction} from "./task.types";
-import type {CategoryAction} from "./categoryTypes";
+import type {CategoryAction} from "./category.types";
 import {RepositoryAction} from "./repositoryTypes";
-import {ApiAction} from "./apiTypes";
+import {ApiAction} from "./api.types";
 
 export type RootAction = TaskAction | CategoryAction | RepositoryAction | ApiAction;
 

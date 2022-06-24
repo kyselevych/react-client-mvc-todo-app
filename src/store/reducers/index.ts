@@ -1,6 +1,6 @@
 import {combineReducers} from 'redux';
 import {taskReducer} from "./task.reducer";
-import {categoryReducer} from "./categoryReducer";
+import {categoryReducer} from "./category.reducer";
 import {filterTasksReducer} from "./filterTasksReducer";
 import {repositoryReducer} from "./repositoryReducer";
 

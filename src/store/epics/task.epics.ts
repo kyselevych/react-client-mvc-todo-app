@@ -7,10 +7,10 @@ import {
     RemovalTaskAction,
     TaskActionTypes
 } from "../types/task.types";
-import {ApiActionTypes, ApiSuccessAction} from "../types/apiTypes";
+import {ApiActionTypes, ApiSuccessAction} from "../types/api.types";
 import {Task} from "models/taskModels";
 
-import {apiActionCreators} from "../actions/apiActions";
+import {apiActionCreators} from "../actions/api.actions";
 import {taskActionCreators} from "../actions/tasks.actions";
 import {mutationTaskCreate, mutationTaskDelete, mutationTaskPerform, queryTasksAll} from "api/graphql/tasks";
 

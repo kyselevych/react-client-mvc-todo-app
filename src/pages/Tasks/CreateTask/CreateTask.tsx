@@ -26,7 +26,7 @@ interface FormValues {
 
 function CreateTask() {
     const {createTask} = useActions();
-    const categories = useTypedSelector(state => state.categories.categories);
+    const categories = useTypedSelector(state => state.categories);
 
     const onSubmit = (values: FormValues, resetForm: { resetForm: () => void; }) => {
         const createTaskPayload: CreateTaskInput = {

@@ -1,6 +1,6 @@
-import {graphqlRequest} from "api/graphqlRequest";
+import {getGraphqlRequestParams} from "api/common/getGraphqlRequestParams";
 
-export const queryCategoriesAll = async () => {
+export const queryCategoriesAll = () => {
     const query = `
         query categoriesAll {
             categories {
@@ -12,5 +12,5 @@ export const queryCategoriesAll = async () => {
         }
     `;
 
-    return await graphqlRequest(query);
+    return getGraphqlRequestParams(query);
 }

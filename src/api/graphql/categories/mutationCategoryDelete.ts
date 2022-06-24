@@ -1,6 +1,6 @@
-import {graphqlRequest} from "api/graphqlRequest";
+import {getGraphqlRequestParams} from "api/common/getGraphqlRequestParams";
 
-export const mutationCategoryDelete = async (taskId: number) => {
+export const mutationCategoryDelete = (taskId: number) => {
     const query = `
         mutation categoryDelete($deleteId: Int!) {
             categories {
@@ -15,5 +15,5 @@ export const mutationCategoryDelete = async (taskId: number) => {
         deleteId: taskId
     };
 
-    return await graphqlRequest(query, variables);
+    return getGraphqlRequestParams(query, variables);
 }

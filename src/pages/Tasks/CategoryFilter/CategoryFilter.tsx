@@ -15,7 +15,7 @@ interface FormValues {
 function CategoryFilter() {
     const {showAllTasks, showTasksByCategoryId} = useActions();
     const currentFilterCategoryId = useTypedSelector(state => state.filterTasks.categoryId);
-    const categories = useTypedSelector(state => state.categories.categories);
+    const categories = useTypedSelector(state => state.categories);
 
     const onSubmit = (values: FormValues) => {
         const {categoryId} = values;

@@ -9,7 +9,7 @@ import {Table, Box, Button, Space} from "components";
 
 function TasksCurrent() {
     const {performTask, removalTask} = useActions();
-    const categories = useTypedSelector(state => state.categories.categories);
+    const categories = useTypedSelector(state => state.categories);
     const currentTasks = useTypedSelector(state => state.tasks.filter(task => !task.isDone))
         .sort(sortDateCompare("deadline"));
 
