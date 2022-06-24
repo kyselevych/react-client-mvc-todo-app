@@ -4,7 +4,8 @@ import {useActions} from "hooks/useActions";
 import {useTypedSelector} from "hooks/useTypedSelector";
 
 function StorageSelect() {
-    const {fetchRepositories, switchRepository} = useActions();
+    const {fetchRepositories, switchRepository, fetchCurrentRepository} = useActions();
+
     const repositories = useTypedSelector(state => state.repositories.repositories);
     const currentRepository = useTypedSelector(state => state.repositories.currentRepository);
 
@@ -15,17 +16,21 @@ function StorageSelect() {
 
     useEffect(() => {
         fetchRepositories();
+        fetchCurrentRepository();
     }, []);
 
     return (
         <Field style={{marginLeft: "auto"}} theme="dark">
-            <select
-                onChange={switchRepositoryHandler}
-                defaultValue={currentRepository?.type}
-            >
+            <select onChange={switchRepositoryHandler} value={currentRepository?.type}>
                 {repositories?.map(repository =>
-                    <option value={repository.type} key={repository.type}>{repository.type}</option>)
-                }
+                    <option
+                        value={repository.type}
+                        key={repository.type}
+
+                    >
+                        {repository.type}
+                    </option>
+                )}
             </select>
         </Field>
     );

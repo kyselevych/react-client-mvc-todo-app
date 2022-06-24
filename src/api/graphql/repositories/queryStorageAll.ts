@@ -1,6 +1,6 @@
-import {graphqlRequest} from "api/graphqlRequest";
+import {getGraphqlRequestParams} from "api/common/getGraphqlRequestParams";
 
-export const queryStorageAll = async () => {
+export const queryStorageAll = () => {
     const query = `
         query storageAll {
             storage {
@@ -12,5 +12,5 @@ export const queryStorageAll = async () => {
         }
     `;
 
-    return await graphqlRequest(query);
+    return getGraphqlRequestParams(query);
 }

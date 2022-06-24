@@ -7,9 +7,7 @@ import {Box, Button, ErrorSpan, Field, Space} from "components";
 import {useTypedSelector} from "hooks/useTypedSelector";
 import {useActions} from "hooks/useActions";
 
-import {StateStatus} from "store/types";
 import {CreateTaskInput} from "models/taskModels";
-
 
 const CreateTaskSchema = Yup.object().shape({
     name: Yup.string()

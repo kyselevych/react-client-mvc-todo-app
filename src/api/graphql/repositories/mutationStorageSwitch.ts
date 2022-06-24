@@ -1,6 +1,6 @@
-import {graphqlRequest} from "api/graphqlRequest";
+import {getGraphqlRequestParams} from "api/common/getGraphqlRequestParams";
 
-export const mutationStorageSwitch = async (storageType: string) => {
+export const mutationStorageSwitch = (storageType: string) => {
     const query = `
         mutation storageSwitch($storageSwitch: StorageSwitchInputType!) {
             storage {
@@ -17,5 +17,5 @@ export const mutationStorageSwitch = async (storageType: string) => {
         }
     }
 
-    return await graphqlRequest(query, variables);
+    return getGraphqlRequestParams(query, variables);
 }
