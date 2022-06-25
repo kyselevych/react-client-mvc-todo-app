@@ -1,4 +1,4 @@
-import {FilterTasksActionTypes, FilterTasksAllAction, FilterTasksByCategoryIdAction} from "store/types/filterTasksTypes";
+import {FilterTasksActionTypes, FilterTasksAllAction, FilterTasksByCategoryIdAction} from "store/types/filterTasks.types";
 
 export const filterTasksActionCreators = {
     showAllTasks: (): FilterTasksAllAction => {
